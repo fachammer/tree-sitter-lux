@@ -13,7 +13,7 @@
   "scripts": {
     "generate": "tree-sitter generate",
     "test-only": "tree-sitter test",
-    "test": "tree-sitter generate && npm run test-only",
-    "prepare": "npm run generate && npm test-only"
+    "test": "npm run generate && npm run test-only",
+    "prepare": "npm run generate && npm run test-only"
   }
 }
