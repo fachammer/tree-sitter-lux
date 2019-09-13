@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "tree-sitter generate",
+    "prepare": "npm run build",
     "test-only": "tree-sitter test",
     "test": "npm run build && npm test-only"
   }
