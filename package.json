@@ -11,9 +11,8 @@
     "tree-sitter-cli": "^0.15.8"
   },
   "scripts": {
-    "generate": "tree-sitter generate",
+    "build": "tree-sitter generate",
     "test-only": "tree-sitter test",
-    "test": "npm run generate && npm run test-only",
-    "prepare": "npm run generate && npm run test-only"
+    "test": "npm run build && npm test-only"
   }
 }
