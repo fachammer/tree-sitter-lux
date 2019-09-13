@@ -1,0 +1,6 @@
+.ci/
+build/
+corpus/
+.gitignore
+binding.gyp
+grammar.js
