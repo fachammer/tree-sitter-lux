@@ -14,6 +14,6 @@
     "generate": "tree-sitter generate",
     "test-only": "tree-sitter test",
     "test": "tree-sitter generate && npm run test-only",
-    "prepublish": "npm run generate && npm test-only"
+    "prepare": "npm run generate && npm test-only"
   }
 }
