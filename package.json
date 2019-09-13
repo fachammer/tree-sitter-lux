@@ -1,0 +1,18 @@
+{
+  "name": "tree-sitter-lux",
+  "version": "0.0.1",
+  "description": "Tree-sitter parser for the Lux programming language",
+  "author": "Fabian Achammer",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.14.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.15.8"
+  },
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "prepublish": "npm run generate && npm test"
+  }
+}
