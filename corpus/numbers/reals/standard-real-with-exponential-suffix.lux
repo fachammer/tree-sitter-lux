@@ -1,0 +1,6 @@
+===
+Standard real with exponential suffix
+===
+0.123e10
+---
+(source_file (real))

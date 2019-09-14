@@ -1,0 +1,6 @@
+===
+negative real with exponential suffix
+===
+-123e-20123
+---
+(source_file (real))

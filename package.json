@@ -13,8 +13,8 @@
   },
   "watch": {
     "test": {
-      "patterns": ["grammar.js", "corpus/"],
-      "extensions": ""
+      "patterns": ["grammar.js", "corpus/**/*"],
+      "extensions": "lux"
     }
   },
   "scripts": {
