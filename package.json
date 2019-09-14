@@ -8,12 +8,20 @@
     "nan": "^2.14.0"
   },
   "devDependencies": {
+    "npm-watch": "^0.6.0",
     "tree-sitter-cli": "^0.15.8"
+  },
+  "watch": {
+    "test": {
+      "patterns": ["grammar.js", "corpus/"],
+      "extensions": ""
+    }
   },
   "scripts": {
     "build": "tree-sitter generate",
     "prepare": "npm run build",
     "test-only": "tree-sitter test",
-    "test": "npm run build && npm test-only"
+    "test": "npm run build && npm run test-only",
+    "test:watch": "npm-watch test"
   }
 }

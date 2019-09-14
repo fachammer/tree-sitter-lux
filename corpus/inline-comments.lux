@@ -1,0 +1,10 @@
+===
+Inline comments
+===
+
+## This is an inline comment
+
+---
+
+(source_file 
+  (inline_comment))

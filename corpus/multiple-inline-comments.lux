@@ -1,0 +1,12 @@
+===
+Multiple inline comments
+===
+
+## One comment
+## Another comment
+
+---
+
+(source_file
+  (inline_comment)
+  (inline_comment))

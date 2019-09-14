@@ -1,0 +1,11 @@
+===
+Nested block comment
+===
+
+#(This is a #(nested block) comment)
+
+---
+
+(source_file
+  (block_comment
+    (block_comment)))
