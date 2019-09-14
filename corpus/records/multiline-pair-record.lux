@@ -1,0 +1,10 @@
+===
+multiline record
+===
+{#a b
+ #c d}
+---
+(source_file 
+  (record 
+    (record_pair (tag) (symbol)) 
+    (record_pair (tag) (symbol))))

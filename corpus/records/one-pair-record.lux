@@ -1,0 +1,6 @@
+===
+one-pair record
+===
+{#a b}
+---
+(source_file (record (record_pair (tag) (symbol))))

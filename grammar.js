@@ -11,7 +11,8 @@ module.exports = grammar({
       $.symbol, 
       $.string,
       $.list,
-      $.tuple),
+      $.tuple,
+      $.record),
     _comment: $ => choice($.inline_comment, $.block_comment),
     inline_comment: _ => seq('##', repeat(/./),),
     block_comment: $ => seq('#(', repeat(choice(/./, $._end_line, $.block_comment)), ')'),
@@ -44,9 +45,11 @@ module.exports = grammar({
         optional($._white_space))),
     list: $ => seq('(', repeat($._white_spaced_expression), ')'),
     _end_line: _ => /[\r\n]|\r\n/,
-    string: $ => seq('"', repeat(/[^"]/), '"'),
-    tuple: $ => seq('[', repeat($._white_spaced_expression), ']')
+    string: _ => seq('"', repeat(/[^"]/), '"'),
+    tuple: $ => seq('[', repeat($._white_spaced_expression), ']'),
+    record_pair: $ => seq(optional($._white_space), $.tag, $._white_space, $._white_spaced_expression),
+    record: $ => seq('{', repeat($.record_pair), '}')
   },
 
-  extras: $ => [],
+  extras: _ => [],
 });
