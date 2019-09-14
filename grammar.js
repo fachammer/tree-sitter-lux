@@ -26,5 +26,5 @@ module.exports = grammar({
     bool: _ => /true|false/
   },
 
-  extras: _ => ['\n'],
+  extras: _ => [/\s/],
 });
