@@ -1,0 +1,6 @@
+===
+multiple symbols
+===
+a b
+---
+(source_file (symbol) (symbol))
