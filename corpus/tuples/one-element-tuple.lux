@@ -1,0 +1,6 @@
+===
+one element tuple
+===
+[a]
+---
+(source_file (tuple (symbol)))

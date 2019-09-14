@@ -1,0 +1,9 @@
+===
+multiline tuple
+===
+[a
+b
+c]
+---
+(source_file
+  (tuple (symbol) (symbol) (symbol)))

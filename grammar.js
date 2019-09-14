@@ -10,7 +10,8 @@ module.exports = grammar({
       $.tag, 
       $.symbol, 
       $.string,
-      $.list),
+      $.list,
+      $.tuple),
     _comment: $ => choice($.inline_comment, $.block_comment),
     inline_comment: _ => seq('##', repeat(/./),),
     block_comment: $ => seq('#(', repeat(choice(/./, $._end_line, $.block_comment)), ')'),
@@ -43,7 +44,8 @@ module.exports = grammar({
         optional($._white_space))),
     list: $ => seq('(', repeat($._white_spaced_expression), ')'),
     _end_line: _ => /[\r\n]|\r\n/,
-    string: $ => seq('"', repeat(/[^"]/), '"')
+    string: $ => seq('"', repeat(/[^"]/), '"'),
+    tuple: $ => seq('[', repeat($._white_spaced_expression), ']')
   },
 
   extras: $ => [],
