@@ -3,3 +3,4 @@ src/
 build/
 binding.gyp
 index.js
+.vscode/
