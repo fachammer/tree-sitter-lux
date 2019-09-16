@@ -1,0 +1,13 @@
+===
+.identifier
+===
+.identifier
+---
+(source_file (identifier))
+
+===
+..identifier
+===
+..identifier
+---
+(source_file (identifier))

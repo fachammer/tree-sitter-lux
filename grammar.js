@@ -1,8 +1,14 @@
+function multiple_expressions($) {
+  return seq(repeat($._white_space)
+           , repeat(seq($._expression, repeat1($._white_space)))
+           , optional($._expression))
+}
+
 module.exports = grammar({
   name: 'lux'
 
 , rules: {
-    source_file: $ => repeat($._white_spaced_expression)
+  source_file: $ => multiple_expressions($)
   , _expression: $ =>
     choice($._comment
       , $._number
@@ -29,7 +35,7 @@ module.exports = grammar({
   , bit: _ => /#[01]/
   , _identifier_start_character: $ =>
     // need to add sign explicitly and reduce precendence as otherwise tree 
-    // sitter would try to match as an integer and fail 
+    // sitter would try to match as an int and fail 
     // e.g. +, -, +this-symbol is valid, -this-symbol-is-valid
     prec(-1, choice(/[^#\(\)\[\]\{\}0-9 "\n\r\.]/, $._sign))
   , _identifier_inside_character: $ =>
@@ -37,26 +43,38 @@ module.exports = grammar({
   , _identifier_without_dots: $ => prec.right(seq(
     $._identifier_start_character
     , repeat($._identifier_inside_character)))
+  , identifier_without_dots: $ => $._identifier_without_dots
   , _identifier: $ =>
-    prec.right(seq(
-      $._identifier_without_dots
-      , optional(seq('.', $._identifier_without_dots))))
+    prec.right(
+      seq(
+        choice(seq(optional('.')
+                 , '.'
+                 , $._identifier_without_dots)
+             , seq($._identifier_without_dots)
+             , seq($._identifier_without_dots
+               , seq('.'
+                 , $._identifier_without_dots)))))
   , identifier: $ => $._identifier
   , tag: $ => seq('#', $._identifier)
   , _white_space: $ => choice($._end_line, / /)
-  , _white_spaced_expression: $ =>
-    prec.right(
-      seq(
-        repeat($._white_space)
-        , repeat1($._expression)
-        , repeat($._white_space)))
-  , form: $ => seq('(', repeat($._white_spaced_expression), ')')
+  , _white_space_surrounded_expression: $ =>
+    seq(repeat($._white_space)
+      , $._expression
+      , repeat1($._white_space)
+      , optional($._expression))
+  , form: $ => seq('(', multiple_expressions($), ')')
   , _end_line: _ => /[\r\n]|\r\n/
   , text: _ => seq('"', repeat(/[^"]/), '"')
-  , tuple: $ => seq('[', repeat($._white_spaced_expression), ']')
-  , record_pair: $ => seq(repeat($._white_space), $.tag, $._white_space, $._white_spaced_expression)
+  , tuple: $ => seq('[', multiple_expressions($), ']')
+  , record_pair: $ => prec.left(
+    seq(repeat($._white_space)
+      , $.tag
+      , repeat1($._white_space)
+      , $._expression
+      , repeat($._white_space)))
   , record: $ => seq('{', repeat($.record_pair), '}')
   }
 
 , extras: _ => []
+, inline: $ => [$._multiple_expressions]
 });

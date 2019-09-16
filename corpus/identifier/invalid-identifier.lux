@@ -1,0 +1,34 @@
+===
+.identifier.x
+===
+.identifier.x
+---
+(source_file (identifier) (MISSING "_white_space_token1") (identifier))
+
+===
+..identifier.x
+===
+..identifier.x
+---
+(source_file (identifier) (MISSING "_white_space_token1") (identifier))
+
+===
+identifier.x.y
+===
+identifier.x.y
+---
+(source_file (identifier) (MISSING "_white_space_token1") (identifier))
+
+===
+identifier..x
+===
+identifier..x
+---
+(source_file (identifier (ERROR)))
+
+===
+identifier.
+===
+identifier.
+---
+(source_file (identifier) (ERROR))
