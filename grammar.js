@@ -68,7 +68,7 @@ module.exports = grammar({
   , tuple: $ => seq('[', multiple_expressions($), ']')
   , record_pair: $ => prec.left(
     seq(repeat($._white_space)
-      , $.tag
+      , $._expression
       , repeat1($._white_space)
       , $._expression
       , repeat($._white_space)))
