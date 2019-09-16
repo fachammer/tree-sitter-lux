@@ -8,4 +8,4 @@ record with non-tags as keys
     (record_pair (identifier) (tag))
     (record_pair 
       (record (record_pair (tag) (identifier)))
-      (tuple (frac) (natural)))))
+      (tuple (frac) (nat)))))

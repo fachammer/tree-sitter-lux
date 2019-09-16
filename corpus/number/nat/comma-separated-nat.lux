@@ -3,25 +3,25 @@
 ===
 1,234567890
 ---
-(source_file (natural))
+(source_file (nat))
 
 ===
 1,234,456,890
 ===
 1,234,456,890
 ---
-(source_file (natural))
+(source_file (nat))
 
 ===
 12,34,56,78,90
 ===
 12,34,56,78,90
 ---
-(source_file (natural))
+(source_file (nat))
 
 ===
 1,,,,2,,3,4,,5,6,,78,9,0
 ===
 1,,,,2,,3,4,,5,6,,78,9,0
 ---
-(source_file (natural))
+(source_file (nat))
