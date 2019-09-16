@@ -32,13 +32,13 @@ module.exports = grammar({
     prec.right(seq($._symbol_start, repeat(choice($._symbol_start, $._digit))))
   , symbol: $ => $._symbol
   , tag: $ => seq('#', $._symbol)
-  , _white_space: $ => prec.right(repeat1(choice($._end_line, / /)))
+  , _white_space: $ => choice($._end_line, / /)
   , _white_spaced_expression: $ =>
     prec.right(
       seq(
-        optional($._white_space)
+        repeat($._white_space)
         , repeat1($._expression)
-        , optional($._white_space)))
+        , repeat($._white_space)))
   , list: $ => seq('(', repeat($._white_spaced_expression), ')')
   , _end_line: _ => /[\r\n]|\r\n/
   , string: _ => seq('"', repeat(/[^"]/), '"')
