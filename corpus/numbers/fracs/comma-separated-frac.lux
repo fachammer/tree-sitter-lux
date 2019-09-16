@@ -1,8 +1,20 @@
 ===
-comma-separated frac
++1.0,
 ===
 +1.0,
+---
+(source_file (frac))
+
+===
 -0.123,456,789
+===
+-0.123,456,789
+---
+(source_file (frac))
+
+===
++12,345.678,90
+===
 +12,345.678,90
 ---
-(source_file (frac) (frac) (frac))
+(source_file (frac))
