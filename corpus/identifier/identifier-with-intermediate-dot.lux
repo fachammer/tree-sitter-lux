@@ -1,0 +1,6 @@
+===
+identifier with intermediate dot
+===
+identifier.withintermediatedot
+---
+(source_file (identifier))

@@ -16,20 +16,31 @@ module.exports = grammar({
   , _comment: $ => choice($.inline_comment)
   , inline_comment: _ => seq('##', repeat(/./))
   , _number: $ => choice($.natural, $.int, $.rev, $.frac)
-  , _sign: _ => /[+-]/
-  , _digit: _ => /[0-9]/
+  , _sign: _ => choice('+','-')
+  , _digit: _ => choice('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
   , _comma: _ => /,/
   , _natural: $ => prec.right(seq($._digit, repeat(choice($._digit, $._comma))))
-  , natural: $ => prec.right($._natural)
-  , _int: $ => prec.right(seq($._sign, $._natural))
+  , natural: $ => $._natural
+  , _int: $ => seq($._sign, $._natural)
   , int: $ => $._int
-  , _rev: $ => prec.right(seq(/\./, $._natural))
+  , _rev: $ => prec.right(seq('.', $._natural))
   , rev: $ => $._rev
   , frac: $ => prec(1, seq($._int, $._rev))
-  , bit: _ => /#[0-1]/
-  , _identifier_start: _ => /[^#\(\)\[\]\{\}0-9 "\n\r]/
+  , bit: _ => /#[01]/
+  , _identifier_start_character: $ =>
+    // need to add sign explicitly and reduce precendence as otherwise tree 
+    // sitter would try to match as an integer and fail 
+    // e.g. +, -, +this-symbol is valid, -this-symbol-is-valid
+    prec(-1, choice(/[^#\(\)\[\]\{\}0-9 "\n\r\.]/, $._sign))
+  , _identifier_inside_character: $ =>
+    choice($._identifier_start_character, $._digit)
+  , _identifier_without_dots: $ => prec.right(seq(
+    $._identifier_start_character
+    , repeat($._identifier_inside_character)))
   , _identifier: $ =>
-    prec.right(seq($._identifier_start, repeat(choice($._identifier_start, $._digit))))
+    prec.right(seq(
+      $._identifier_without_dots
+      , optional(seq('.', $._identifier_without_dots))))
   , identifier: $ => $._identifier
   , tag: $ => seq('#', $._identifier)
   , _white_space: $ => choice($._end_line, / /)
