@@ -1,0 +1,38 @@
+===
+simple form of forms
+===
+(form (of) forms)
+---
+(source_file 
+  (form 
+    (identifier) 
+    (form (identifier)) 
+    (identifier)))
+
+===
+nested forms of forms
+===
+(this is 
+  (#a form 
+    (of multiple "text")
+    [#a 123 .123]
+    ## and a comment
+    {-789 {#0 -4.567}}))
+---
+(source_file
+  (form 
+    (identifier)
+    (identifier)
+    (form
+      (tag)
+      (identifier)
+      (form
+        (identifier) (identifier) (text))
+      (tuple
+        (tag) (nat) (rev))
+      (inline_comment)
+      (record
+        (record_pair 
+          (int)
+          (record
+            (record_pair (bit) (frac))))))))
