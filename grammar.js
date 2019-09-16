@@ -13,10 +13,8 @@ module.exports = grammar({
       , $.list
       , $.tuple
       , $.record)
-  , _comment: $ => choice($.inline_comment, $.block_comment)
+  , _comment: $ => choice($.inline_comment)
   , inline_comment: _ => seq('##', repeat(/./))
-  , block_comment: $ =>
-    seq('#(', repeat(choice(/./, $._end_line, $.block_comment)), ')')
   , _number: $ => choice($.int, $.real)
   , _sign: _ => /[+-]/
   , _digit: _ => /[0-9]/
@@ -39,7 +37,7 @@ module.exports = grammar({
     prec.right(seq($._symbol_start, repeat(choice($._symbol_start, $._digit))))
   , symbol: $ => $._symbol
   , tag: $ => seq('#', $._symbol)
-  , _white_space: $ => prec.right(repeat1(choice($._end_line, /\s/)))
+  , _white_space: $ => prec.right(repeat1(choice($._end_line, / /)))
   , _white_spaced_expression: $ =>
     prec.right(
       seq(
