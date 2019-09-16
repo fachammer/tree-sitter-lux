@@ -1,6 +1,0 @@
-===
-real without int part
-===
-.1
----
-(source_file (real))

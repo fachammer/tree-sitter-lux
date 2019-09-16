@@ -1,0 +1,8 @@
+===
+comma-separated frac
+===
++1.0,
+-0.123,456,789
++12,345.678,90
+---
+(source_file (frac) (frac) (frac))

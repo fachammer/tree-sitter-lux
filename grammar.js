@@ -15,22 +15,17 @@ module.exports = grammar({
       , $.record)
   , _comment: $ => choice($.inline_comment)
   , inline_comment: _ => seq('##', repeat(/./))
-  , _number: $ => choice($.int, $.real)
+  , _number: $ => choice($.natural, $.int, $.rev, $.frac)
   , _sign: _ => /[+-]/
   , _digit: _ => /[0-9]/
-  , _natural: $ => repeat1($._digit)
-  , _int: $ => prec.right(seq(optional($._sign), $._natural))
+  , _comma: _ => /,/
+  , _natural: $ => prec.right(seq($._digit, repeat(choice($._digit, $._comma))))
+  , natural: $ => prec.right($._natural)
+  , _int: $ => prec.right(seq($._sign, $._natural))
   , int: $ => $._int
-  , _exponential_delimiter: _ => /[eE]/
-  , _exponential_suffix: $ => seq($._exponential_delimiter, $._int)
-  , _decimal_part: $ => prec.right(seq(/\./, $._natural))
-  , real: $ =>
-    seq(
-      optional($._sign)
-      , choice(
-        seq($._decimal_part, optional($._exponential_suffix))
-        , seq($._natural, $._exponential_suffix)
-        , seq($._natural, $._decimal_part, optional($._exponential_suffix))))
+  , _rev: $ => prec.right(seq(/\./, $._natural))
+  , rev: $ => $._rev
+  , frac: $ => prec(1, seq($._int, $._rev))
   , bit: _ => /#[0-1]/
   , _symbol_start: _ => /[^#\(\)\[\]\{\}0-9\s"]/
   , _symbol: $ =>
