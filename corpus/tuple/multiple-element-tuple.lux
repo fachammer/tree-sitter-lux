@@ -3,4 +3,4 @@ multiple element tuple
 ===
 [a b c]
 ---
-(source_file (tuple (symbol) (symbol) (symbol)))
+(source_file (tuple (identifier) (identifier) (identifier)))

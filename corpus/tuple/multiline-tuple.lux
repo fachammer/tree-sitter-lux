@@ -6,4 +6,4 @@ b
 c]
 ---
 (source_file
-  (tuple (symbol) (symbol) (symbol)))
+  (tuple (identifier) (identifier) (identifier)))

@@ -8,7 +8,7 @@ module.exports = grammar({
       , $._number
       , $.bit
       , $.tag
-      , $.symbol
+      , $.identifier
       , $.string
       , $.list
       , $.tuple
@@ -27,11 +27,11 @@ module.exports = grammar({
   , rev: $ => $._rev
   , frac: $ => prec(1, seq($._int, $._rev))
   , bit: _ => /#[0-1]/
-  , _symbol_start: _ => /[^#\(\)\[\]\{\}0-9\s"]/
-  , _symbol: $ =>
-    prec.right(seq($._symbol_start, repeat(choice($._symbol_start, $._digit))))
-  , symbol: $ => $._symbol
-  , tag: $ => seq('#', $._symbol)
+  , _identifier_start: _ => /[^#\(\)\[\]\{\}0-9\s"]/
+  , _identifier: $ =>
+    prec.right(seq($._identifier_start, repeat(choice($._identifier_start, $._digit))))
+  , identifier: $ => $._identifier
+  , tag: $ => seq('#', $._identifier)
   , _white_space: $ => choice($._end_line, / /)
   , _white_spaced_expression: $ =>
     prec.right(

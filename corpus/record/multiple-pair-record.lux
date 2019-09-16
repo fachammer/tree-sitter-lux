@@ -5,6 +5,6 @@ multiple pair record
 ---
 (source_file 
   (record
-    (record_pair (tag) (symbol))
-    (record_pair (tag) (symbol))
-    (record_pair (tag) (symbol))))
+    (record_pair (tag) (identifier))
+    (record_pair (tag) (identifier))
+    (record_pair (tag) (identifier))))

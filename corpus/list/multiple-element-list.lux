@@ -4,4 +4,4 @@ multiple element list
 (a b c)
 ---
 (source_file 
-  (list (symbol) (symbol) (symbol)))
+  (list (identifier) (identifier) (identifier)))

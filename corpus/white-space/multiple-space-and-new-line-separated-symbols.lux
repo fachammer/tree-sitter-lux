@@ -1,8 +1,0 @@
-===
-multiple space and new line separted symbols
-===
-a  
-   b
-  c
----
-(source_file (symbol) (symbol) (symbol))

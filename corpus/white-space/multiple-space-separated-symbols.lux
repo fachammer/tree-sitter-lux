@@ -1,6 +1,0 @@
-===
-multiple space separated symbols
-===
-a    b
----
-(source_file (symbol) (symbol))

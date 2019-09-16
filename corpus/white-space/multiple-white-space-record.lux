@@ -1,6 +1,6 @@
 ===
 multiple white space record
 ===
-{   #tag    symbol}
+{   #tag    identifier}
 ---
-(source_file (record (record_pair (tag) (symbol))))
+(source_file (record (record_pair (tag) (identifier))))

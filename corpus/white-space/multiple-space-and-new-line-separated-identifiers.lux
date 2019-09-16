@@ -1,0 +1,8 @@
+===
+multiple space and new line separted identifiers
+===
+a  
+   b
+  c
+---
+(source_file (identifier) (identifier) (identifier))
