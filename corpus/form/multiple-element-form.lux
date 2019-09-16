@@ -1,0 +1,7 @@
+===
+multiple element form
+===
+(a b c)
+---
+(source_file 
+  (form (identifier) (identifier) (identifier)))

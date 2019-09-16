@@ -1,6 +1,0 @@
-===
-one-element list
-===
-(element)
----
-(source_file (list (identifier)))
