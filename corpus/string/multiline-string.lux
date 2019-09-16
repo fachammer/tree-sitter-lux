@@ -1,8 +1,0 @@
-===
-multiline string
-===
-"This is a
-multiline
-string"
----
-(source_file (string))

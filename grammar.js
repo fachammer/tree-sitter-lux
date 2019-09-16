@@ -9,7 +9,7 @@ module.exports = grammar({
       , $.bit
       , $.tag
       , $.identifier
-      , $.string
+      , $.text
       , $.list
       , $.tuple
       , $.record)
@@ -41,7 +41,7 @@ module.exports = grammar({
         , repeat($._white_space)))
   , list: $ => seq('(', repeat($._white_spaced_expression), ')')
   , _end_line: _ => /[\r\n]|\r\n/
-  , string: _ => seq('"', repeat(/[^"]/), '"')
+  , text: _ => seq('"', repeat(/[^"]/), '"')
   , tuple: $ => seq('[', repeat($._white_spaced_expression), ']')
   , record_pair: $ => seq(repeat($._white_space), $.tag, $._white_space, $._white_spaced_expression)
   , record: $ => seq('{', repeat($.record_pair), '}')
