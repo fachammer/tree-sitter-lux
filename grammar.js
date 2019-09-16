@@ -43,7 +43,7 @@ module.exports = grammar({
   , _end_line: _ => /[\r\n]|\r\n/
   , string: _ => seq('"', repeat(/[^"]/), '"')
   , tuple: $ => seq('[', repeat($._white_spaced_expression), ']')
-  , record_pair: $ => seq(optional($._white_space), $.tag, $._white_space, $._white_spaced_expression)
+  , record_pair: $ => seq(repeat($._white_space), $.tag, $._white_space, $._white_spaced_expression)
   , record: $ => seq('{', repeat($.record_pair), '}')
   }
 
