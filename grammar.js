@@ -27,7 +27,7 @@ module.exports = grammar({
   , rev: $ => $._rev
   , frac: $ => prec(1, seq($._int, $._rev))
   , bit: _ => /#[0-1]/
-  , _identifier_start: _ => /[^#\(\)\[\]\{\}0-9\s"]/
+  , _identifier_start: _ => /[^#\(\)\[\]\{\}0-9 "\n\r]/
   , _identifier: $ =>
     prec.right(seq($._identifier_start, repeat(choice($._identifier_start, $._digit))))
   , identifier: $ => $._identifier
