@@ -6,7 +6,7 @@ module.exports = grammar({
   , _expression: $ =>
     choice($._comment
       , $._number
-      , $.bool
+      , $.bit
       , $.tag
       , $.symbol
       , $.string
@@ -31,7 +31,7 @@ module.exports = grammar({
         seq($._decimal_part, optional($._exponential_suffix))
         , seq($._natural, $._exponential_suffix)
         , seq($._natural, $._decimal_part, optional($._exponential_suffix))))
-  , bool: _ => /true|false/
+  , bit: _ => /#[0-1]/
   , _symbol_start: _ => /[^#\(\)\[\]\{\}0-9\s"]/
   , _symbol: $ =>
     prec.right(seq($._symbol_start, repeat(choice($._symbol_start, $._digit))))
