@@ -1,0 +1,9 @@
+===
+comment with closing parenthesis inside
+===
+(
+  ## TODO: Replace)
+)
+---
+(source_file 
+  (form (inline_comment)))
