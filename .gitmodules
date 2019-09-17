@@ -1,3 +1,0 @@
-[submodule "examples/lux"]
-	path = examples/lux
-	url = https://github.com/LuxLang/lux.git

@@ -17,15 +17,14 @@
         "grammar.js",
         "corpus/**/*"
       ],
-      "extensions": "txt"
+      "extensions": "lux"
     }
   },
   "scripts": {
     "build": "tree-sitter generate",
     "prepare": "npm run build",
-    "unit-test-only": "tree-sitter test",
-    "example-test-only": "find examples/lux/stdlib/source/ -name \"*.lux\" | (xargs -n 1 tree-sitter parse > syntax-trees.out || (grep \"ERROR\" syntax-trees.out && false))",
-    "test": "npm run build && npm run unit-test-only && npm run example-test-only",
+    "test-only": "tree-sitter test",
+    "test": "npm run build && npm run test-only",
     "test:watch": "npm-watch test"
   }
 }

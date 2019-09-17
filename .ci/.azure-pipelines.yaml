@@ -12,15 +12,11 @@ strategy:
 pool:
   vmImage: $(imageName)
 steps:
-- checkout: self
-  submodules: true
 - task: NodeTool@0
   inputs:
     versionSpec: '11.x'
   displayName: 'Install Node.js'
 - bash: npm ci
   displayName: Install
-- bash: npm run unit-test-only
-  displayName: Run parser unit tests
-- bash: npm run example-test-only
-  displayName: Run parser example tests
+- bash: npm run test-only
+  displayName: Run parser tests
