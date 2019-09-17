@@ -24,7 +24,6 @@ module.exports = grammar({
         $.form,
         $.tuple,
         $.record,
-        $.inline_comment,
       ),
 
     bit: _ => /#[01]/,
@@ -72,24 +71,24 @@ module.exports = grammar({
 
     tag: $ => seq('#', $.__identifier),
 
-    _white_space: $ => choice($._end_line, /\s/),
+    _white_space: $ => choice($._end_line, /\s/, $.inline_comment),
     _end_line: _ => /[\r\n]|\r\n/,
 
     form: $ => seq('(', multiple_expressions($), ')'),
 
     tuple: $ => seq('[', multiple_expressions($), ']'),
 
-    record: $ => seq('{', repeat($.record_pair), '}'),
-    record_pair: $ =>
-      prec.right(
+    record: $ =>
+      seq(
+        '{',
         seq(
           repeat($._white_space),
-          $._expression,
-          repeat1($._white_space),
-          $._expression,
-          repeat($._white_space),
+          repeat(seq($.record_pair, repeat($._white_space))),
         ),
+        '}',
       ),
+    record_pair: $ =>
+      seq($._expression, repeat1($._white_space), $._expression),
 
     inline_comment: _ => /##.*/,
   },

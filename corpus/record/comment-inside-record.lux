@@ -1,0 +1,43 @@
+===
+comment inside empty record
+===
+{## comment
+}
+---
+(source_file (record (inline_comment)))
+
+===
+comment before record pairs
+===
+{## comment
+#a b
+}
+---
+(source_file
+  (record
+    (inline_comment)
+    (record_pair (tag) (identifier))))
+
+===
+comment inside pair
+===
+{#a ## comment
+ #b}
+---
+(source_file
+  (record
+    (record_pair (tag) (inline_comment) (tag))))
+
+===
+comment between pairs
+===
+{#a #b
+## comment
+ #c #d
+}
+---
+(source_file
+  (record
+    (record_pair (tag) (tag))
+    (inline_comment)
+    (record_pair (tag) (tag))))
