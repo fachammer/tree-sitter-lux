@@ -13,30 +13,36 @@ module.exports = grammar({
     source_file: $ => multiple_expressions($),
     _expression: $ =>
       choice(
-        $._comment,
-        $._number,
         $.bit,
-        $.tag,
-        $.identifier,
+        $._number,
         $.text,
+        $.identifier,
+        $.tag,
         $.form,
         $.tuple,
         $.record,
+        $.inline_comment,
       ),
-    _comment: $ => choice($.inline_comment),
-    inline_comment: _ => /##.*/,
+
+    bit: _ => /#[01]/,
+
     _number: $ => choice($.nat, $.int, $.rev, $.frac),
-    _sign: _ => choice('+', '-'),
+    nat: $ => $._nat,
+    _nat: $ => prec.right(seq($._digit, repeat(choice($._digit, $._comma)))),
     _digit: _ => choice('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
     _comma: _ => /,/,
-    _nat: $ => prec.right(seq($._digit, repeat(choice($._digit, $._comma)))),
-    nat: $ => $._nat,
-    _int: $ => seq($._sign, $._nat),
+
     int: $ => $._int,
-    _rev: $ => prec.right(seq('.', $._nat)),
+    _int: $ => seq($._sign, $._nat),
+    _sign: _ => choice('+', '-'),
+
     rev: $ => $._rev,
+    _rev: $ => prec.right(seq('.', $._nat)),
+
     frac: $ => prec(1, seq($._int, $._rev)),
-    bit: _ => /#[01]/,
+
+    text: _ => seq('"', repeat(/[^"]/), '"'),
+
     _identifier_start_character: $ =>
       // need to add sign explicitly and reduce precendence as otherwise tree
       // sitter would try to match as an int and fail
@@ -66,19 +72,14 @@ module.exports = grammar({
         ),
       ),
     identifier: $ => $._identifier,
+
     tag: $ => seq('#', $._identifier),
-    _white_space: $ => choice($._end_line, / /),
-    _white_space_surrounded_expression: $ =>
-      seq(
-        repeat($._white_space),
-        $._expression,
-        repeat1($._white_space),
-        optional($._expression),
-      ),
+
     form: $ => seq('(', multiple_expressions($), ')'),
-    _end_line: _ => /[\r\n]|\r\n/,
-    text: _ => seq('"', repeat(/[^"]/), '"'),
+
     tuple: $ => seq('[', multiple_expressions($), ']'),
+
+    record: $ => seq('{', repeat($.record_pair), '}'),
     record_pair: $ =>
       prec.left(
         seq(
@@ -89,7 +90,18 @@ module.exports = grammar({
           repeat($._white_space),
         ),
       ),
-    record: $ => seq('{', repeat($.record_pair), '}'),
+
+    inline_comment: _ => /##.*/,
+
+    _white_space: $ => choice($._end_line, / /),
+    _white_space_surrounded_expression: $ =>
+      seq(
+        repeat($._white_space),
+        $._expression,
+        repeat1($._white_space),
+        optional($._expression),
+      ),
+    _end_line: _ => /[\r\n]|\r\n/,
   },
 
   extras: _ => [],
