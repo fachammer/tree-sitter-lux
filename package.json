@@ -13,7 +13,10 @@
   },
   "watch": {
     "test": {
-      "patterns": ["grammar.js", "corpus/**/*"],
+      "patterns": [
+        "grammar.js",
+        "corpus/**/*"
+      ],
       "extensions": "lux"
     }
   },
