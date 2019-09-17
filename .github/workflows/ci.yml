@@ -26,6 +26,6 @@ jobs:
       env:
         CI: true
     - name: Test
-      run: npm test-only
+      run: npm run test-only
       env:
         CI: true
