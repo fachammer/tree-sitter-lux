@@ -1,0 +1,13 @@
+===
+int similar identifier
+===
++2xff
+---
+(source_file (identifier))
+
+===
+frac similar identifier
+===
++234.x
+---
+(source_file (identifier))

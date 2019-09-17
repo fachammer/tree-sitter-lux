@@ -14,7 +14,10 @@ module.exports = grammar({
     _expression: $ =>
       choice(
         $.bit,
-        $._number,
+        $.nat,
+        $.int,
+        $.rev,
+        $.frac,
         $.text,
         $.identifier,
         $.tag,
@@ -26,54 +29,51 @@ module.exports = grammar({
 
     bit: _ => /#[01]/,
 
-    _number: $ => choice($.nat, $.int, $.rev, $.frac),
-    nat: $ => $._nat,
-    _nat: $ => prec.right(seq($._digit, repeat(choice($._digit, $._comma)))),
-    _digit: _ => choice('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
-    _comma: _ => /,/,
+    nat: $ => $.__nat,
+    __nat: $ => prec.right(seq($.__digit, repeat(choice($.__digit, ',')))),
+    __digit: _ => choice('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
 
-    int: $ => $._int,
-    _int: $ => seq($._sign, $._nat),
-    _sign: _ => choice('+', '-'),
+    int: $ => $.__int,
+    __int: $ => seq($.__sign, $.__nat),
+    __sign: _ => choice('+', '-'),
 
-    rev: $ => $._rev,
-    _rev: $ => prec.right(seq('.', $._nat)),
+    rev: $ => $.__rev,
+    __rev: $ => seq('.', $.__nat),
 
-    frac: $ => prec(1, seq($._int, $._rev)),
+    frac: $ => seq($.__int, $.__rev),
 
     text: _ => seq('"', repeat(/[^"]/), '"'),
 
-    _identifier_start_character: $ =>
+    __identifier_start_character: $ =>
       // need to add sign explicitly and reduce precendence as otherwise tree
       // sitter would try to match as an int and fail
       // e.g. +, -, +this-symbol is valid, -this-symbol-is-valid
-      prec(-1, choice(/[^#\(\)\[\]\{\}0-9 "\n\r\.]/, $._sign)),
-    _identifier_inside_character: $ =>
-      choice($._identifier_start_character, $._digit),
-    _identifier_without_dots: $ =>
+      choice(/[^#\(\)\[\]\{\}0-9 "\n\r\.]/, $.__sign),
+    __identifier_inside_character: $ =>
+      choice($.__identifier_start_character, $.__digit),
+    __identifier_without_dots: $ =>
       prec.right(
         seq(
-          $._identifier_start_character,
-          repeat($._identifier_inside_character),
+          $.__identifier_start_character,
+          repeat($.__identifier_inside_character),
         ),
       ),
-    identifier_without_dots: $ => $._identifier_without_dots,
-    _identifier: $ =>
-      prec.right(
-        seq(
-          choice(
-            seq(optional('.'), '.', $._identifier_without_dots),
-            seq($._identifier_without_dots),
-            seq(
-              $._identifier_without_dots,
-              seq('.', $._identifier_without_dots),
-            ),
-          ),
-        ),
+    __starting_dot_identifier: $ =>
+      seq('.', optional('.'), $.__identifier_without_dots),
+    __identifier_with_intermediate_dots: $ =>
+      seq($.__identifier_without_dots, '.', $.__identifier_without_dots),
+    __identifier: $ =>
+      choice(
+        $.__starting_dot_identifier,
+        $.__identifier_without_dots,
+        $.__identifier_with_intermediate_dots,
       ),
-    identifier: $ => $._identifier,
+    identifier: $ => $.__identifier,
 
-    tag: $ => seq('#', $._identifier),
+    tag: $ => seq('#', $.__identifier),
+
+    _white_space: $ => choice($._end_line, /\s/),
+    _end_line: _ => /[\r\n]|\r\n/,
 
     form: $ => seq('(', multiple_expressions($), ')'),
 
@@ -81,7 +81,7 @@ module.exports = grammar({
 
     record: $ => seq('{', repeat($.record_pair), '}'),
     record_pair: $ =>
-      prec.left(
+      prec.right(
         seq(
           repeat($._white_space),
           $._expression,
@@ -92,18 +92,27 @@ module.exports = grammar({
       ),
 
     inline_comment: _ => /##.*/,
-
-    _white_space: $ => choice($._end_line, / /),
-    _white_space_surrounded_expression: $ =>
-      seq(
-        repeat($._white_space),
-        $._expression,
-        repeat1($._white_space),
-        optional($._expression),
-      ),
-    _end_line: _ => /[\r\n]|\r\n/,
   },
 
   extras: _ => [],
-  inline: $ => [$._multiple_expressions],
+  inline: $ => [
+    $.__identifier_start_character,
+    $.__identifier_inside_character,
+    $.__identifier_without_dots,
+    $.__identifier_without_dots,
+    $.__identifier_with_intermediate_dots,
+    $.__identifier,
+    $.__nat,
+    $.__int,
+    $.__sign,
+    $.__digit,
+    $.__rev,
+  ],
+  conflicts: $ => [
+    [$.int, $.identifier, $.frac],
+    [$.int, $.identifier],
+    [$.identifier, $.frac],
+    [$.frac, $.int],
+    [$.rev, $.identifier],
+  ],
 });
