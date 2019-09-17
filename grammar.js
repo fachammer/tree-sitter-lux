@@ -20,7 +20,7 @@ module.exports = grammar({
       , $.tuple
       , $.record)
   , _comment: $ => choice($.inline_comment)
-  , inline_comment: _ => seq('##', repeat(/./))
+  , inline_comment: _ => /##.*/
   , _number: $ => choice($.nat, $.int, $.rev, $.frac)
   , _sign: _ => choice('+','-')
   , _digit: _ => choice('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
