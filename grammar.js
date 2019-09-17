@@ -1,7 +1,15 @@
 function multiple_expressions($) {
   return seq(
     repeat($._white_space),
-    repeat(seq($._expression, repeat1($._white_space))),
+    repeat(
+      seq(
+        choice(
+          seq($.__non_enclosed, choice($.__enclosed, $._white_space)),
+          $.__enclosed,
+        ),
+        repeat($._white_space),
+      ),
+    ),
     optional($._expression),
   );
 }
@@ -12,18 +20,21 @@ module.exports = grammar({
   rules: {
     source_file: $ => multiple_expressions($),
     _expression: $ =>
-      choice(
-        $.bit,
-        $.nat,
-        $.int,
-        $.rev,
-        $.frac,
-        $.text,
-        $.identifier,
-        $.tag,
-        $.form,
-        $.tuple,
-        $.record,
+      prec(
+        1,
+        choice(
+          $.bit,
+          $.nat,
+          $.int,
+          $.rev,
+          $.frac,
+          $.text,
+          $.identifier,
+          $.tag,
+          $.form,
+          $.tuple,
+          $.record,
+        ),
       ),
 
     bit: _ => /#[01]/,
@@ -71,11 +82,7 @@ module.exports = grammar({
 
     tag: $ => seq('#', $.__identifier),
 
-    _white_space: $ => choice($._end_line, /\s/, $.inline_comment),
-    _end_line: _ => /[\r\n]|\r\n/,
-
     form: $ => seq('(', multiple_expressions($), ')'),
-
     tuple: $ => seq('[', multiple_expressions($), ']'),
 
     record: $ =>
@@ -90,7 +97,14 @@ module.exports = grammar({
     record_pair: $ =>
       seq($._expression, repeat1($._white_space), $._expression),
 
+    _white_space: $ => choice($._end_line, /\s/, $.inline_comment),
+    _end_line: _ => /[\r\n]|\r\n/,
+
     inline_comment: _ => /##.*/,
+
+    __enclosed: $ => choice($.text, $.form, $.tuple, $.record),
+    __non_enclosed: $ =>
+      choice($.bit, $.nat, $.int, $.rev, $.frac, $.identifier, $.tag),
   },
 
   extras: _ => [],
@@ -106,6 +120,8 @@ module.exports = grammar({
     $.__sign,
     $.__digit,
     $.__rev,
+    $.__enclosed,
+    $.__non_enclosed,
   ],
   conflicts: $ => [
     [$.int, $.identifier, $.frac],
