@@ -4,10 +4,13 @@ trigger:
 strategy:
   matrix:
     linux:
+      osName: linux
       imageName: 'ubuntu-16.04'
     mac:
+      osName: macos
       imageName: 'macos-10.13'
     windows:
+      osName: windows
       imageName: 'vs2017-win2016'
 pool:
   vmImage: $(imageName)
@@ -39,4 +42,4 @@ steps:
     targetFolder: $(Build.ArtifactStagingDirectory)/npm
   displayName: 'Copy package.json'
 - publish: '$(Build.ArtifactStagingDirectory)/npm'
-  artifact: npm-$(Agent.OS)
+  artifact: npm-$(osName)
