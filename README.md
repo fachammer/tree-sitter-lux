@@ -4,4 +4,4 @@ tree-sitter-lux is a [Tree-sitter](http://tree-sitter.github.io/tree-sitter/) gr
 
 Based on this [syntax document](https://github.com/LuxLang/lux/blob/4049370ec0d0bec578b8fcb83700d020e81386c4/documentation/specification/Syntax.md).
 
-It is currently in development. Check the [changelog](CHANGELOG.md) for upcoming features.
+It is currently in development.
