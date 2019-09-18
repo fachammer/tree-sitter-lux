@@ -39,4 +39,4 @@ steps:
     targetFolder: $(Build.ArtifactStagingDirectory)/npm
   displayName: 'Copy package.json'
 - publish: '$(Build.ArtifactStagingDirectory)/npm'
-  artifact: npm
+  artifact: npm-$(Agent.OS)
