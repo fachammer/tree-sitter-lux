@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-lux",
-  "version": "0.0.0-development",
+  "version": "0.1.0-SNAPSHOT",
   "description": "Tree-sitter parser for the Lux programming language",
   "keywords": [
     "lux",
