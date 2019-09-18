@@ -8,8 +8,10 @@
     "nan": "^2.14.0"
   },
   "devDependencies": {
+    "changelog-verify": "^1.1.2",
     "npm-watch": "^0.6.0",
-    "tree-sitter-cli": "^0.15.8"
+    "tree-sitter-cli": "^0.15.8",
+    "version-changelog": "^3.1.1"
   },
   "watch": {
     "unit-test": {
@@ -27,6 +29,7 @@
     "unit-test": "npm run build && npm run unit-test-only",
     "unit-test:watch": "npm-watch unit-test",
     "example-test-only": "find examples/lux/stdlib/source/ -name \"*.lux\" | (xargs -n 1 tree-sitter parse > syntax-trees.out || (grep \"ERROR\" syntax-trees.out && false))",
-    "test": "npm run build && npm run unit-test-only && npm run example-test-only"
+    "test": "npm run build && npm run unit-test-only && npm run example-test-only",
+    "version": "version-changelog && changelog-verify && git add CHANGELOG.md"
   }
 }
