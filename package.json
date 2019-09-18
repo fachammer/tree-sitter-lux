@@ -30,6 +30,7 @@
     "unit-test:watch": "npm-watch unit-test",
     "example-test-only": "find examples/lux/stdlib/source/ -name \"*.lux\" | (xargs -n 1 tree-sitter parse > syntax-trees.out || (grep \"ERROR\" syntax-trees.out && false))",
     "test": "npm run build && npm run unit-test-only && npm run example-test-only",
+    "preversion": "npm test",
     "version": "version-changelog && changelog-verify && git add CHANGELOG.md"
   }
 }
