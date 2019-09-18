@@ -24,3 +24,19 @@ steps:
   displayName: Run parser unit tests
 - bash: npm run example-test-only
   displayName: Run parser example tests
+- bash: npm pack
+  displayName: Package npm release
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: '*.tgz'
+    targetFolder: $(Build.ArtifactStagingDirectory)/npm
+  displayName: 'Copy npm package'
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: 'package.json'
+    targetFolder: $(Build.ArtifactStagingDirectory)/npm
+  displayName: 'Copy package.json'
+- publish: '$(Build.ArtifactStagingDirectory)/npm'
+  artifact: npm
