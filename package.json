@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-lux",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "description": "Tree-sitter parser for the Lux programming language",
   "keywords": [
     "lux",
@@ -12,14 +12,42 @@
   "license": "MIT",
   "author": "Fabian Achammer <fabian.achammer@gmail.com> (https://github.com/fachammer)",
   "repository": "github:fachammer/tree-sitter-lux",
+  "release": {
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "Release: ${nextRelease.version}\n\n${nextRelease.notes}"
+      }
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "eslint"
+        }
+      ],
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/changelog"
+    ]
+  },
   "dependencies": {
     "nan": "^2.14.0"
   },
   "devDependencies": {
-    "changelog-verify": "^1.1.2",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/git": "^7.0.16",
     "npm-watch": "^0.6.0",
-    "tree-sitter-cli": "^0.15.8",
-    "version-changelog": "^3.1.1"
+    "semantic-release": "^15.13.24",
+    "tree-sitter-cli": "^0.15.8"
   },
   "watch": {
     "unit-test": {
@@ -38,7 +66,6 @@
     "unit-test:watch": "npm-watch unit-test",
     "example-test-only": "find examples/lux/stdlib/source/ -name \"*.lux\" | (xargs -n 1 tree-sitter parse > syntax-trees.out || (grep \"ERROR\" syntax-trees.out && false))",
     "test": "npm run build && npm run unit-test-only && npm run example-test-only",
-    "preversion": "npm test",
-    "version": "version-changelog && changelog-verify && git add CHANGELOG.md"
+    "semantic-release": "semantic-release"
   }
 }
