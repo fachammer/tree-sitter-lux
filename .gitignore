@@ -5,3 +5,4 @@ binding.gyp
 index.js
 .vscode/
 *.out
+*.tgz
