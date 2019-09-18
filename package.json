@@ -27,6 +27,8 @@
       }
     ],
     "plugins": [
+      "@semantic-release/npm",
+      "@semantic-release/git",
       [
         "@semantic-release/commit-analyzer",
         {
@@ -34,8 +36,6 @@
         }
       ],
       "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      "@semantic-release/git",
       "@semantic-release/changelog"
     ]
   },
@@ -44,7 +44,11 @@
   },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/commit-analyzer": "^6.3.0",
     "@semantic-release/git": "^7.0.16",
+    "@semantic-release/npm": "^5.1.15",
+    "@semantic-release/release-notes-generator": "^7.3.0",
+    "conventional-changelog-eslint": "^3.0.1",
     "npm-watch": "^0.6.0",
     "semantic-release": "^15.13.24",
     "tree-sitter-cli": "^0.15.8"
