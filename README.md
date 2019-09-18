@@ -1,4 +1,4 @@
-# tree-sitter-lux [![Build Status](https://dev.azure.com/fabianachammer/tree-sitter-lux/_apis/build/status/fachammer.tree-sitter-lux?branchName=master)](https://dev.azure.com/fabianachammer/tree-sitter-lux/_build/latest?definitionId=3&branchName=master)
+# tree-sitter-lux [![Build Status](https://dev.azure.com/fabianachammer/tree-sitter-lux/_apis/build/status/fachammer.tree-sitter-lux?branchName=master&label=master)](https://dev.azure.com/fabianachammer/tree-sitter-lux/_build/latest?definitionId=3&branchName=master&label=master)
 
 tree-sitter-lux is a [Tree-sitter](http://tree-sitter.github.io/tree-sitter/) grammar for the [Lux language](https://github.com/LuxLang/lux).
 
