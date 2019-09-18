@@ -5,5 +5,14 @@ comment with closing parenthesis inside
   ## TODO: Replace)
 )
 ---
-(source_file 
+(source_file
+  (form (inline_comment)))
+
+===
+comment consumes whole line
+===
+(##comment)
+)
+---
+(source_file
   (form (inline_comment)))
