@@ -1,14 +1,16 @@
 # tree-sitter-lux [![Build Status](https://dev.azure.com/fabianachammer/tree-sitter-lux/_apis/build/status/fachammer.tree-sitter-lux?branchName=master&label=build)](https://dev.azure.com/fabianachammer/tree-sitter-lux/_build/latest?definitionId=3&branchName=master&label=build)
 
-tree-sitter-lux is a [Tree-sitter](http://tree-sitter.github.io/tree-sitter/) grammar for the [Lux language](https://github.com/LuxLang/lux). It is based on this [syntax document](https://github.com/LuxLang/lux/blob/4049370ec0d0bec578b8fcb83700d020e81386c4/documentation/specification/Syntax.md).
+tree-sitter-lux is a [Tree-sitter](http://tree-sitter.github.io/tree-sitter/)
+grammar for the [Lux language](https://github.com/LuxLang/lux).
+It is based on this [syntax document](https://github.com/LuxLang/lux/blob/4049370ec0d0bec578b8fcb83700d020e81386c4/documentation/specification/Syntax.md).
 
-## Installation
+## installation
 
 ```bash
 npm install tree-sitter tree-sitter-lux
 ```
 
-## Usage
+## usage
 
 A basic nodejs script might look like this:
 
@@ -31,6 +33,14 @@ This would print
 (source_file (form (identifier) (nat) (nat)))
 ```
 
-## License
+## current features
+
+Currently the grammar recognizes all the basic Lux literals bit, nat, int, rev, frac, identifier, tag, form, tuple, record and inline comment.
+
+## planned features
+
+Recognizing definitions, functions and some types from the stdlib
+
+## license
 
 [MIT](https://choosealicense.com/licenses/mit/)
