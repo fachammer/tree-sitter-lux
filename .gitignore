@@ -6,4 +6,4 @@ index.js
 .vscode/
 *.out
 *.tgz
-test/package-lock.json
+.test

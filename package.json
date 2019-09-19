@@ -55,7 +55,7 @@
     "example-test-only": "find examples/lux/stdlib/source/ -name \"*.lux\" | (xargs -n 1 tree-sitter parse > syntax-trees.out || (grep \"ERROR\" syntax-trees.out && false))",
     "test": "npm run build && npm run unit-test-only && npm run example-test-only",
     "commit": "commit",
-    "package-test-only": "cd test && npm install tree-sitter ../tree-sitter-lux-$(node -e \"console.log(require('../package.json').version)\").tgz && node test.js",
+    "package-test-only": "cp -r test .test && cd .test && npm install tree-sitter ../tree-sitter-lux-$(node -e \"console.log(require('../package.json').version)\").tgz && node test.js",
     "package-test": "npm pack && npm run package-test-only",
     "preversion": "npm test",
     "semantic-release": "semantic-release"
