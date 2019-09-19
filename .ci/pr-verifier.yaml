@@ -1,7 +1,7 @@
 trigger: none
 
 jobs:
-- job: commit-verifier
+- job: commit_verifier
   displayName: verify commits
   pool:
     vmImage: ubuntu-latest
