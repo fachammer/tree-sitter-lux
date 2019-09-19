@@ -32,27 +32,29 @@ jobs:
     submodules: true
   - task: NodeTool@0
     inputs:
-      versionSpec: '11.x'
-    displayName: 'Install Node.js'
+      versionSpec: 11.x
+    displayName: install node
   - bash: npm ci
-    displayName: Install
+    displayName: install module
   - bash: npm run unit-test-only
-    displayName: Run parser unit tests
+    displayName: run parser unit tests
   - bash: npm run example-test-only
-    displayName: Run parser example tests
+    displayName: run parser example tests
   - bash: npm pack
-    displayName: Package npm release
+    displayName: package npm module
+  - bash: npm run package-test-only
+    displayName: test packaging
   - task: CopyFiles@2
     inputs:
       sourceFolder: '$(Build.SourcesDirectory)'
       contents: '*.tgz'
       targetFolder: $(Build.ArtifactStagingDirectory)/npm
-    displayName: 'Copy npm package'
+    displayName: copy npm package
   - task: CopyFiles@2
     inputs:
       sourceFolder: '$(Build.SourcesDirectory)'
       contents: 'package.json'
       targetFolder: $(Build.ArtifactStagingDirectory)/npm
-    displayName: 'Copy package.json'
+    displayName: copy package.json
   - publish: '$(Build.ArtifactStagingDirectory)/npm'
     artifact: npm-$(osName)
