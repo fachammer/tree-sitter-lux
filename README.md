@@ -9,20 +9,24 @@ npm install tree-sitter tree-sitter-lux
 ```
 
 ## Usage
+
 A basic nodejs script might look like this:
+
 ```javascript
-const parser = require('tree-sitter');
-const lux = require('tree-sitter-lux');
+const Parser = require('tree-sitter');
+const Lux = require('tree-sitter-lux');
 
 const parser = new Parser();
-parser.setLanguage(lux);
+parser.setLanguage(Lux);
 
-const sourceCode = "(+ 1 1)"
+const sourceCode = '(+ 1 1)';
 const tree = parser.parse(sourceCode);
 
 console.log(tree.rootNode.toString());
 ```
+
 This would print
+
 ```
 (source_file (identifier) (nat) (nat))
 ```
