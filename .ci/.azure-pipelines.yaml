@@ -26,8 +26,6 @@ steps:
   displayName: Run parser unit tests
 - bash: npm run example-test-only
   displayName: Run parser example tests
-- bash: npm install
-  displayName: Build binaries
 - bash: npm pack
   displayName: Package npm release
 - task: CopyFiles@2
