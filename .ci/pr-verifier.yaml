@@ -1,0 +1,54 @@
+trigger: none
+
+jobs:
+- pool:
+    vmImage: ubuntu-latest
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: 11.x
+    displayName: install node
+  - bash: npm install && npx commitlint --from origin/master --to HEAD
+    displayName: verify commits
+- strategy:
+    matrix:
+      linux:
+        osName: linux
+        imageName: 'ubuntu-16.04'
+      mac:
+        osName: macos
+        imageName: 'macos-10.13'
+      windows:
+        osName: windows
+        imageName: 'vs2017-win2016'
+  pool:
+    vmImage: $(imageName)
+  steps:
+  - checkout: self
+    submodules: true
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '11.x'
+    displayName: 'Install Node.js'
+  - bash: npm ci
+    displayName: Install
+  - bash: npm run unit-test-only
+    displayName: Run parser unit tests
+  - bash: npm run example-test-only
+    displayName: Run parser example tests
+  - bash: npm pack
+    displayName: Package npm release
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '$(Build.SourcesDirectory)'
+      contents: '*.tgz'
+      targetFolder: $(Build.ArtifactStagingDirectory)/npm
+    displayName: 'Copy npm package'
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '$(Build.SourcesDirectory)'
+      contents: 'package.json'
+      targetFolder: $(Build.ArtifactStagingDirectory)/npm
+    displayName: 'Copy package.json'
+  - publish: '$(Build.ArtifactStagingDirectory)/npm'
+    artifact: npm-$(osName)
