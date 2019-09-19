@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/fachammer/tree-sitter-lux/compare/v1.0.2...v1.1.0) (2019-09-19)
+
+
+### Features
+
+* add badges ([#7](https://github.com/fachammer/tree-sitter-lux/issues/7)) ([c20095a](https://github.com/fachammer/tree-sitter-lux/commit/c20095a))
+
 ## [1.0.2](https://github.com/fachammer/tree-sitter-lux/compare/v1.0.1...v1.0.2) (2019-09-19)
 
 
