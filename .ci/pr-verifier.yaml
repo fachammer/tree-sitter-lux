@@ -41,7 +41,7 @@ jobs:
   - bash: npm run example-test-only
     displayName: run parser example tests
   - bash: npm pack
-    displayName: package npm module
+    displayName: package npm release
   - bash: npm run package-test-only
     displayName: test packaging
   - task: CopyFiles@2
