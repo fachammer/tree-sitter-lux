@@ -28,7 +28,7 @@ console.log(tree.rootNode.toString());
 This would print
 
 ```
-(source_file (identifier) (nat) (nat))
+(source_file (form (identifier) (nat) (nat)))
 ```
 
 ## License
