@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-lux",
-  "version": "0.1.0-SNAPSHOT",
+  "version": "0.0.0-development",
   "description": "Tree-sitter parser for the Lux programming language",
   "keywords": [
     "lux",
@@ -19,9 +19,12 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@commitlint/prompt-cli": "^8.2.0",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/git": "^7.0.16",
     "commitizen": "^4.0.3",
     "husky": "^3.0.5",
     "npm-watch": "^0.6.0",
+    "semantic-release": "^15.13.24",
     "tree-sitter-cli": "^0.15.8"
   },
   "watch": {
@@ -51,6 +54,7 @@
     "unit-test:watch": "npm-watch unit-test",
     "example-test-only": "find examples/lux/stdlib/source/ -name \"*.lux\" | (xargs -n 1 tree-sitter parse > syntax-trees.out || (grep \"ERROR\" syntax-trees.out && false))",
     "test": "npm run build && npm run unit-test-only && npm run example-test-only",
-    "commit": "commit"
+    "commit": "commit",
+    "semantic-release": "semantic-release"
   }
 }
