@@ -3,13 +3,8 @@ corpus/
 .vscode/
 .gitmodules
 examples/
-build/*
-!build/Release
-src/*
-!src/node-types.json
+build/
 
 .gitignore
-binding.gyp
-grammar.js
 *.out
 *.tgz
