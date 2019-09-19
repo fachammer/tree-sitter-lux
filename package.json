@@ -22,8 +22,11 @@
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/git": "^7.0.16",
     "commitizen": "^4.0.3",
+    "cp-cli": "^2.0.0",
+    "cross-var": "^1.1.0",
     "husky": "^3.0.5",
     "npm-watch": "^0.6.0",
+    "rimraf": "^3.0.0",
     "semantic-release": "^15.13.24",
     "tree-sitter-cli": "^0.15.8"
   },
@@ -55,10 +58,10 @@
     "example-test-only": "find examples/lux/stdlib/source/ -name \"*.lux\" | (xargs -n 1 tree-sitter parse > syntax-trees.out || (grep \"ERROR\" syntax-trees.out && false))",
     "test": "npm run build && npm run unit-test-only && npm run example-test-only",
     "commit": "commit",
-    "package-test-only": "cp -r test .test && cd .test && npm install tree-sitter ../tree-sitter-lux-$(node -e \"console.log(require('../package.json').version)\").tgz && node test.js",
+    "package-test-only": "rimraf .test && cp-cli test/ .test/ && cd .test && cross-var npm install tree-sitter ../tree-sitter-lux-$npm_package_version.tgz && node test.js",
     "package-test": "npm pack && npm run package-test-only",
     "preversion": "npm test",
-    "postpublish": "cp -r test .test && cd .test && npm install tree-sitter tree-sitter-lux && node test.js",
+    "postpublish": "rimraf .test && cp-cli test/ .test/ && cd .test && npm install tree-sitter tree-sitter-lux && node test.js",
     "semantic-release": "semantic-release"
   }
 }
