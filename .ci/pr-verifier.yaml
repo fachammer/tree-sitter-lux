@@ -1,7 +1,9 @@
 trigger: none
 
 jobs:
-- pool:
+- job: commit-verifier
+  displayName: verify commits
+  pool:
     vmImage: ubuntu-latest
   steps:
   - task: NodeTool@0
@@ -10,7 +12,9 @@ jobs:
     displayName: install node
   - bash: npm install && npx commitlint --from origin/master --to HEAD
     displayName: verify commits
-- strategy:
+- job: build
+  displayName: build
+  strategy:
     matrix:
       linux:
         osName: linux
