@@ -58,6 +58,7 @@
     "package-test-only": "cp -r test .test && cd .test && npm install tree-sitter ../tree-sitter-lux-$(node -e \"console.log(require('../package.json').version)\").tgz && node test.js",
     "package-test": "npm pack && npm run package-test-only",
     "preversion": "npm test",
+    "postpublish": "cp -r test .test && cd .test && npm install tree-sitter tree-sitter-lux && node test.js",
     "semantic-release": "semantic-release"
   }
 }
