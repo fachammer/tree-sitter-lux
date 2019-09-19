@@ -1,15 +1,5 @@
 # 1.0.0 (2019-09-19)
 
-
 ### Features
 
-* parse all basic lux literals ([3f06592](https://github.com/fachammer/tree-sitter-lux/commit/3f06592))
-
-# Change Log
-
-All notable changes to _tree-sitter-lux_ will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Unreleased]
+- parse all basic lux literals ([3f06592](https://github.com/fachammer/tree-sitter-lux/commit/3f06592))
