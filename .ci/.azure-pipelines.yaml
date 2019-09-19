@@ -1,3 +1,5 @@
+trigger: none
+
 strategy:
   matrix:
     linux:
