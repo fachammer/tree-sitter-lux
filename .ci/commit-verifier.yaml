@@ -7,5 +7,5 @@ steps:
   inputs:
     versionSpec: 11.x
   displayName: install node
-- bash: npx commitlint --from origin/master --to HEAD
+- bash: npm install && npx commitlint --from origin/master --to HEAD
   displayName: verify commits
