@@ -16,3 +16,7 @@ steps:
     displayName: install module
   - bash: npx semantic-release
     displayName: semantic release
+    env:
+      GH_TOKEN: $(GH_TOKEN)
+      NPM_TOKEN: $(NPM_TOKEN)
+      BUILD_SOURCEBRANCHNAME: $(Build.SourceBranchName)
