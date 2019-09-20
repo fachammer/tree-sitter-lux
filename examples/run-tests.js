@@ -32,11 +32,11 @@ function countText(singular, array) {
         process.stdout.clearLine();
         process.stdout.write(`\u2713 ${pad(index + 1)} / ${files.length} parsed ${file}\n`);
       }
-      catch ({ stdout, ...rest }) {
-        if (!stdout) {
-          console.error(rest);
+      catch (error) {
+        if (!error.stdout) {
+          throw error;
         }
-        var fileErrors = stdout.match(/\(ERROR \[(\d+), (\d+)\] - \[(\d+), (\d+)\]\)/g);
+        var fileErrors = error.stdout.match(/\(ERROR \[(\d+), (\d+)\] - \[(\d+), (\d+)\]\)/g);
         fileErrors.pop();
 
         let errorObject = { file: file, errors: [] };
