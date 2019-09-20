@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/fachammer/tree-sitter-lux/compare/v1.1.0...v1.1.1) (2019-09-20)
+
+
+### Performance Improvements
+
+* pass all files to tree-sitter parse at once ([c520d73](https://github.com/fachammer/tree-sitter-lux/commit/c520d73))
+
 # [1.1.0](https://github.com/fachammer/tree-sitter-lux/compare/v1.0.2...v1.1.0) (2019-09-19)
 
 
