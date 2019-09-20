@@ -28,7 +28,7 @@ function countText(singular, array) {
       try {
         const processingFileString = `\u25CB ${pad(index + 1)} / ${files.length} parsing ${file} ...`;
         process.stdout.write(processingFileString);
-        await exec('./node_modules/.bin/tree-sitter parse ' + file, { maxBuffer });
+        await exec('npx tree-sitter parse ' + file, { maxBuffer });
         readline.cursorTo(process.stdout, 0);
         readline.clearLine(process.stdout, 0);
         process.stdout.write(`\u2713 ${pad(index + 1)} / ${files.length} parsed ${file}\n`);
