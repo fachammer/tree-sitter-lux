@@ -1,0 +1,18 @@
+trigger:
+- master
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+steps:
+  - checkout: self
+    submodules: true
+  - task: NodeTool@0
+    inputs:
+      versionSpec: 11.x
+    displayName: install node
+  - bash: npm ci
+    displayName: install module
+  - bash: npx semantic-release
+    displayname: semantic release
