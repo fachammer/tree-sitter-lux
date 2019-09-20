@@ -15,4 +15,4 @@ steps:
   - bash: npm ci
     displayName: install module
   - bash: npx semantic-release
-    displayname: semantic release
+    displayName: semantic release
