@@ -3,6 +3,7 @@ const child_process = require('child_process');
 const { promisify } = require('util');
 const exec = promisify(child_process.exec);
 const asyncGlob = promisify(glob);
+const readline = require('readline');
 
 const maxBuffer = 10 * 1024 * 1024;
 const globPattern = 'examples/lux/stdlib/source/**/*.lux';
@@ -28,8 +29,8 @@ function countText(singular, array) {
         const processingFileString = `\u25CB ${pad(index + 1)} / ${files.length} parsing ${file} ...`;
         process.stdout.write(processingFileString);
         await exec('./node_modules/.bin/tree-sitter parse ' + file, { maxBuffer });
-        process.stdout.cursorTo(0);
-        process.stdout.clearLine();
+        readline.cursorTo(process.stdout, 0);
+        readline.clearLine(process.stdout, 0);
         process.stdout.write(`\u2713 ${pad(index + 1)} / ${files.length} parsed ${file}\n`);
       }
       catch (error) {
@@ -40,8 +41,8 @@ function countText(singular, array) {
         fileErrors.pop();
 
         let errorObject = { file: file, errors: [] };
-        process.stdout.cursorTo(0);
-        process.stdout.clearLine();
+        readline.cursorTo(process.stdout, 0);
+        readline.clearLine(process.stdout, 0);
         process.stdout.write(`\u2715 ${pad(index + 1)} / ${files.length} ${countText('error', fileErrors)} in ${file}\n`);
         for (const fileError of fileErrors) {
           const { start_line, start_character, end_line, end_character } = fileError.match(/\(ERROR \[(?<start_line>\d+), (?<start_character>\d+)\] - \[(?<end_line>\d+), (?<end_character>\d+)\]\)/).groups;
