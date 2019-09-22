@@ -1,3 +1,6 @@
+variables:
+- group: tokens
+
 trigger: none
 
 jobs:
@@ -12,8 +15,8 @@ jobs:
     displayName: install node
   - bash: npm install && npx commitlint --from origin/master --to HEAD
     displayName: verify commits
-- job: build
-  displayName: build
+- job: build_and_test
+  displayName: build and test
   strategy:
     matrix:
       linux:
@@ -58,3 +61,23 @@ jobs:
     displayName: copy package.json
   - publish: '$(Build.ArtifactStagingDirectory)/npm'
     artifact: npm-$(osName)
+- job: dryrun_release
+  displayName: dry run release
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+    - checkout: self
+      submodules: true
+    - task: NodeTool@0
+      inputs:
+        versionSpec: 11.x
+      displayName: install node
+    - bash: npm ci
+      displayName: install module
+    - bash: npx semantic-release --dry-run --ci false --branch $(System.PullRequest.TargetBranch)
+      displayName: semantic release dry run
+      env:
+        GH_TOKEN: $(GH_TOKEN)
+        NPM_TOKEN: $(NPM_TOKEN)
+        SYSTEM_PULLREQUEST_TARGETBRANCH: $(System.PullRequest.TargetBranch)
+        BUILD_SOURCEBRANCHNAME: $(Build.SourceBranchName)

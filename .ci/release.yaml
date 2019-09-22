@@ -1,3 +1,6 @@
+variables:
+- group: tokens
+
 trigger:
 - master
 
