@@ -5,7 +5,7 @@ record with non-tags as keys
 ---
 (lux
   (record
-    (record_pair (identifier) (tag))
-    (record_pair
-      (record (record_pair (tag) (identifier)))
+    (pair (identifier) (tag))
+    (pair
+      (record (pair (tag) (identifier)))
       (tuple (frac) (nat)))))

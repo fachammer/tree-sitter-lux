@@ -5,6 +5,6 @@ multiple pair record
 ---
 (lux
   (record
-    (record_pair (tag) (identifier))
-    (record_pair (tag) (identifier))
-    (record_pair (tag) (identifier))))
+    (pair (tag) (identifier))
+    (pair (tag) (identifier))
+    (pair (tag) (identifier))))

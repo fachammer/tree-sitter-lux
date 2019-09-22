@@ -32,7 +32,7 @@ nested forms of forms
         (tag) (nat) (rev))
       (comment)
       (record
-        (record_pair
+        (pair
           (int)
           (record
-            (record_pair (bit) (frac))))))))
+            (pair (bit) (frac))))))))
