@@ -32,15 +32,19 @@ const tree = parser.parse(sourceCode);
 console.log(tree.rootNode.toString());
 ```
 
-This would print
+This produces the following syntax tree
 
 ```
-(source_file (form (identifier) (nat) (nat)))
+(lux
+  (form
+    (identifier)
+    (natural)
+    (natural)))
 ```
 
 ## current features
 
-Currently the grammar recognizes all the basic Lux literals bit, nat, int, rev, frac, identifier, tag, form, tuple, record and inline comment.
+Currently the grammar recognizes all the basic Lux literals bit, natural, integer, revolution, fraction, identifier, tag, text, form, tuple, record and comment.
 
 ## planned features
 
