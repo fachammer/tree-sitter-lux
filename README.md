@@ -48,4 +48,5 @@ Currently the grammar recognizes all the basic Lux literals bit, natural, intege
 
 ## planned features
 
-Recognizing definitions, functions and some types from the stdlib
+Recognizing definitions, anonymous functions and modules
+
