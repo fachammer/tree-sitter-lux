@@ -5,5 +5,5 @@ multiline tuple
 b
 c]
 ---
-(source_file
+(lux
   (tuple (identifier) (identifier) (identifier)))

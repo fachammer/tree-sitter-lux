@@ -3,4 +3,4 @@ multiple space separated identifiers
 ===
 a    b
 ---
-(source_file (identifier) (identifier))
+(lux (identifier) (identifier))

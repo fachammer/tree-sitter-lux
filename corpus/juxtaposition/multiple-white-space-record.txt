@@ -3,4 +3,4 @@ multiple white space record
 ===
 {   #tag    identifier}
 ---
-(source_file (record (record_pair (tag) (identifier))))
+(lux (record (record_pair (tag) (identifier))))

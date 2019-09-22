@@ -3,39 +3,39 @@
 ===
 +
 ---
-(source_file (identifier))
+(lux (identifier))
 
 ===
 '-'
 ===
 -
 ---
-(source_file (identifier))
+(lux (identifier))
 
 ===
 '-' inside identifier
 ===
 dash-inside-identifier
 ---
-(source_file (identifier))
+(lux (identifier))
 
 ===
 '+' inside identifier
 ===
 plus+inside+identifier
 ---
-(source_file (identifier))
+(lux (identifier))
 
 ===
 '-' at start
 ===
 -valid-identifier
 ---
-(source_file (identifier))
+(lux (identifier))
 
 ===
 '+' at start
 ===
 +valididentifier
 ---
-(source_file (identifier))
+(lux (identifier))

@@ -6,5 +6,5 @@ Inline comments
 
 ---
 
-(source_file 
+(lux
   (inline_comment))

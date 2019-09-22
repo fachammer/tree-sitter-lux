@@ -18,7 +18,7 @@ module.exports = grammar({
   name: 'lux',
 
   rules: {
-    source_file: $ => multiple_expressions($),
+    lux: $ => multiple_expressions($),
     _expression: $ =>
       prec(
         1,

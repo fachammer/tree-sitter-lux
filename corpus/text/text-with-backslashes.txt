@@ -3,11 +3,11 @@
 ===
 "the backslash (i.e. \) stands for itself and serves no special function"
 ---
-(source_file (text))
+(lux (text))
 
 ===
 \n
 ===
 "here, the \n will not be replaced by a new-line, since there is no escape syntax"
 ---
-(source_file (text))
+(lux (text))
