@@ -3,7 +3,7 @@ multiple pair record
 ===
 {#a b #c d #e f}
 ---
-(source_file 
+(lux
   (record
     (record_pair (tag) (identifier))
     (record_pair (tag) (identifier))

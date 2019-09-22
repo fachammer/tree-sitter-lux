@@ -1,8 +1,8 @@
 ===
 multiple space and new line separted identifiers
 ===
-a  
+a
    b
   c
 ---
-(source_file (identifier) (identifier) (identifier))
+(lux (identifier) (identifier) (identifier))
