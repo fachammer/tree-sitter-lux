@@ -3,4 +3,4 @@ one-pair record
 ===
 {#a b}
 ---
-(lux (record (record_pair key: (tag) value: (identifier))))
+(lux (record (pair (tag) (identifier))))
