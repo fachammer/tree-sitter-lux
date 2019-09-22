@@ -8,5 +8,5 @@ Multiple inline comments
 ---
 
 (lux
-  (inline_comment)
-  (inline_comment))
+  (comment)
+  (comment))

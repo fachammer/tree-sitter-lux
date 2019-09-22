@@ -97,10 +97,10 @@ module.exports = grammar({
     record_pair: $ =>
       seq($._expression, repeat1($._white_space), $._expression),
 
-    _white_space: $ => choice($._end_line, /\s/, $.inline_comment),
+    _white_space: $ => choice($._end_line, /\s/, $.comment),
     _end_line: _ => /[\r\n]|\r\n/,
 
-    inline_comment: _ => /##.*/,
+    comment: _ => /##.*/,
 
     __enclosed: $ => choice($.text, $.form, $.tuple, $.record),
     __non_enclosed: $ =>

@@ -4,7 +4,7 @@ comment inside empty record
 {## comment
 }
 ---
-(lux (record (inline_comment)))
+(lux (record (comment)))
 
 ===
 comment before record pairs
@@ -15,7 +15,7 @@ comment before record pairs
 ---
 (lux
   (record
-    (inline_comment)
+    (comment)
     (record_pair (tag) (identifier))))
 
 ===
@@ -26,7 +26,7 @@ comment inside pair
 ---
 (lux
   (record
-    (record_pair (tag) (inline_comment) (tag))))
+    (record_pair (tag) (comment) (tag))))
 
 ===
 comment between pairs
@@ -39,5 +39,5 @@ comment between pairs
 (lux
   (record
     (record_pair (tag) (tag))
-    (inline_comment)
+    (comment)
     (record_pair (tag) (tag))))

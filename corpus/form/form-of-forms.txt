@@ -30,7 +30,7 @@ nested forms of forms
         (identifier) (identifier) (text))
       (tuple
         (tag) (nat) (rev))
-      (inline_comment)
+      (comment)
       (record
         (record_pair
           (int)
