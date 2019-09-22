@@ -1,6 +1,6 @@
 ===
-multiple ints
+multiple integers
 ===
 +1 -2
 ---
-(lux (int) (int))
+(lux (integer) (integer))

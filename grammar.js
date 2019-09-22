@@ -24,10 +24,10 @@ module.exports = grammar({
         1,
         choice(
           $.bit,
-          $.nat,
-          $.int,
-          $.rev,
-          $.frac,
+          $.natural,
+          $.integer,
+          $.revolution,
+          $.fraction,
           $.text,
           $.identifier,
           $.tag,
@@ -39,24 +39,24 @@ module.exports = grammar({
 
     bit: _ => /#[01]/,
 
-    nat: $ => $.__nat,
-    __nat: $ => prec.right(seq($.__digit, repeat(choice($.__digit, ',')))),
+    natural: $ => $.__natural,
+    __natural: $ => prec.right(seq($.__digit, repeat(choice($.__digit, ',')))),
     __digit: _ => choice('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
 
-    int: $ => $.__int,
-    __int: $ => seq($.__sign, $.__nat),
+    integer: $ => $.__integer,
+    __integer: $ => seq($.__sign, $.__natural),
     __sign: _ => choice('+', '-'),
 
-    rev: $ => $.__rev,
-    __rev: $ => seq('.', $.__nat),
+    revolution: $ => $.__revolution,
+    __revolution: $ => seq('.', $.__natural),
 
-    frac: $ => seq($.__int, $.__rev),
+    fraction: $ => seq($.__integer, $.__revolution),
 
     text: _ => seq('"', repeat(/[^"]/), '"'),
 
     __identifier_start_character: $ =>
       // need to add sign explicitly and reduce precendence as otherwise tree
-      // sitter would try to match as an int and fail
+      // sitter would try to match as an integer and fail
       // e.g. +, -, +this-symbol is valid, -this-symbol-is-valid
       choice(/[^#\(\)\[\]\{\}0-9 "\n\r\.]/, $.__sign),
     __identifier_inside_character: $ =>
@@ -104,7 +104,7 @@ module.exports = grammar({
 
     __enclosed: $ => choice($.text, $.form, $.tuple, $.record),
     __non_enclosed: $ =>
-      choice($.bit, $.nat, $.int, $.rev, $.frac, $.identifier, $.tag),
+      choice($.bit, $.natural, $.integer, $.revolution, $.fraction, $.identifier, $.tag),
   },
 
   extras: _ => [],
@@ -115,19 +115,19 @@ module.exports = grammar({
     $.__identifier_without_dots,
     $.__identifier_with_intermediate_dots,
     $.__identifier,
-    $.__nat,
-    $.__int,
+    $.__natural,
+    $.__integer,
     $.__sign,
     $.__digit,
-    $.__rev,
+    $.__revolution,
     $.__enclosed,
     $.__non_enclosed,
   ],
   conflicts: $ => [
-    [$.int, $.identifier, $.frac],
-    [$.int, $.identifier],
-    [$.identifier, $.frac],
-    [$.frac, $.int],
-    [$.rev, $.identifier],
+    [$.integer, $.identifier, $.fraction],
+    [$.integer, $.identifier],
+    [$.identifier, $.fraction],
+    [$.fraction, $.integer],
+    [$.revolution, $.identifier],
   ],
 });

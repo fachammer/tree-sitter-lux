@@ -11,7 +11,7 @@ try {
 
 
   const assert = require('assert');
-  assert.equal(result, "(lux (form (identifier) (nat) (nat)))");
+  assert.equal(result, "(lux (form (identifier) (natural) (natural)))");
   console.log("packaging correct!");
 }
 catch (e) {
