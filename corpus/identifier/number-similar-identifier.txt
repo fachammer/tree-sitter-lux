@@ -1,12 +1,12 @@
 ===
-int similar identifier
+integer similar identifier
 ===
 +2xff
 ---
 (lux (identifier))
 
 ===
-frac similar identifier
+fraction similar identifier
 ===
 +234.x
 ---

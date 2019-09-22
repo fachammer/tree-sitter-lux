@@ -29,10 +29,10 @@ nested forms of forms
       (form
         (identifier) (identifier) (text))
       (tuple
-        (tag) (nat) (rev))
+        (tag) (natural) (revolution))
       (comment)
       (record
         (pair
-          (int)
+          (integer)
           (record
-            (pair (bit) (frac))))))))
+            (pair (bit) (fraction))))))))

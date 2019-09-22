@@ -1,6 +1,6 @@
 ===
-positive standard int
+positive standard integer
 ===
 +1
 ---
-(lux (int))
+(lux (integer))
