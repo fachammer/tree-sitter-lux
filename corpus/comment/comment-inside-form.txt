@@ -6,7 +6,7 @@ comment with closing parenthesis inside
 )
 ---
 (lux
-  (form (inline_comment)))
+  (form (comment)))
 
 ===
 comment consumes whole line
@@ -15,4 +15,4 @@ comment consumes whole line
 )
 ---
 (lux
-  (form (inline_comment)))
+  (form (comment)))
