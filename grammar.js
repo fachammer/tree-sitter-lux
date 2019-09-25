@@ -1,16 +1,7 @@
 function multiple_expressions($) {
   return seq(
     repeat($._white_space),
-    repeat(
-      seq(
-        choice(
-          seq($.__non_enclosed, choice($.__enclosed, $._white_space)),
-          $.__enclosed,
-        ),
-        repeat($._white_space),
-      ),
-    ),
-    optional($._expression),
+    repeat(seq($._expression, repeat($._white_space))),
   );
 }
 
@@ -20,8 +11,6 @@ module.exports = grammar({
   rules: {
     lux: $ => multiple_expressions($),
     _expression: $ =>
-      prec(
-        1,
         choice(
           $.bit,
           $.natural,
@@ -34,7 +23,6 @@ module.exports = grammar({
           $.form,
           $.tuple,
           $.record,
-        ),
       ),
 
     bit: _ => /#[01]/,
@@ -55,7 +43,7 @@ module.exports = grammar({
     text: _ => seq('"', repeat(/[^"]/), '"'),
 
     __identifier_start_character: $ =>
-      // need to add sign explicitly and reduce precendence as otherwise tree
+      // need to add sign explicitly as otherwise tree
       // sitter would try to match as an integer and fail
       // e.g. +, -, +this-symbol is valid, -this-symbol-is-valid
       choice(/[^#\(\)\[\]\{\}0-9 "\n\r\.]/, $.__sign),
@@ -95,7 +83,7 @@ module.exports = grammar({
         '}',
       ),
     pair: $ =>
-      seq($._expression, repeat1($._white_space), $._expression),
+      seq($._expression, repeat($._white_space), $._expression),
 
     _white_space: $ => choice($._end_line, /\s/, $.comment),
     _end_line: _ => /[\r\n]|\r\n/,

@@ -1,0 +1,27 @@
+===
+identifier..identifier
+===
+identifier..identifier
+---
+(lux (identifier (ERROR)))
+
+===
+.identifier.x
+===
+.identifier.x
+---
+(lux (identifier) (identifier))
+
+===
+..identifier.x
+===
+..identifier.x
+---
+(lux (identifier) (identifier))
+
+===
+identifier.x.y
+===
+identifier.x.y
+---
+(lux (identifier) (identifier))

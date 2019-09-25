@@ -1,25 +1,4 @@
 ===
-.identifier.x
-===
-.identifier.x
----
-(lux (identifier) (MISSING "_white_space_token1") (identifier))
-
-===
-..identifier.x
-===
-..identifier.x
----
-(lux (identifier) (MISSING "_white_space_token1") (identifier))
-
-===
-identifier.x.y
-===
-identifier.x.y
----
-(lux (identifier) (MISSING "_white_space_token1") (identifier))
-
-===
 identifier..x
 ===
 identifier..x
