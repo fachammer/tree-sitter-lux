@@ -83,7 +83,7 @@ module.exports = grammar({
         '}',
       ),
     pair: $ =>
-      seq($._expression, repeat($._white_space), $._expression),
+      seq(field('key', $._expression), repeat($._white_space), field('value', $._expression)),
 
     _white_space: $ => choice($._end_line, /\s/, $.comment),
     _end_line: _ => /[\r\n]|\r\n/,
