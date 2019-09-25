@@ -1,0 +1,9 @@
+===
+key value fields for record
+===
+{#a "b" #c +1}
+---
+(lux
+  (record
+    (pair key: (tag) value: (text))
+    (pair key: (tag) value: (integer))))
