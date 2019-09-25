@@ -115,13 +115,18 @@ This example produces the following syntax tree:
 
     (lux
       (record
-        (pair (tag) (identifier))
-        (pair (text) (natural))))
+        (pair key: (tag) value: (identifier))
+        (pair key: (text) value: (natural))))
 
 Children of record nodes can be of type `comment` or `pair`.
 
 #### `pair`
 Recognizes pairs of syntax tokens, but only inside records, e.g. `#a b` inside `{#a b}`.
+This example produces the following syntax tree:
+
+    (lux (record (pair key: (tag) value: (identifier))))
+
+Notice the fields for `key` and `value` inside pair node.
 Children of pair nodes can be of any of the top level types.
 
 > Don't assume that there are exactly two children inside a pair.
