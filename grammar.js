@@ -38,7 +38,9 @@ module.exports = grammar({
     revolution: $ => $.__revolution,
     __revolution: $ => seq('.', $.__natural),
 
-    fraction: $ => seq($.__integer, $.__revolution),
+    _exponential_suffix: $ => seq(choice('e', 'E'), $.__integer),
+
+    fraction: $ => seq($.__integer, $.__revolution, optional($._exponential_suffix)),
 
     text: _ => seq('"', repeat(/[^"]/), '"'),
 
