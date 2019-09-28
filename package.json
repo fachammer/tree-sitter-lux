@@ -32,7 +32,7 @@
     "tree-sitter-cli": "^0.15.8"
   },
   "watch": {
-    "unit-test": {
+    "test": {
       "patterns": [
         "grammar.js",
         "corpus/**/*"
@@ -55,9 +55,9 @@
     "prepare": "npm run build",
     "unit-test-only": "tree-sitter test",
     "unit-test": "npm run build && npm run unit-test-only",
-    "unit-test:watch": "npm-watch unit-test",
     "example-test-only": "node examples/run-tests.js",
     "test": "npm run build && npm run unit-test-only && npm run example-test-only",
+    "test:watch": "npm-watch test",
     "commit": "commit",
     "package-test-only": "rimraf .test && cp-cli test/ .test/ && cd .test && cross-var npm install tree-sitter ../tree-sitter-lux-$npm_package_version.tgz && node test.js",
     "package-test": "npm pack && npm run package-test-only",
