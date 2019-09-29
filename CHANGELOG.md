@@ -1,5 +1,12 @@
 # changelog
 
+# [2.1.0](https://github.com/fachammer/tree-sitter-lux/compare/v2.0.0...v2.1.0) (2019-09-29)
+
+
+### Features
+
+* build .wasm file ([32ea9ec](https://github.com/fachammer/tree-sitter-lux/commit/32ea9ec))
+
 # [2.0.0](https://github.com/fachammer/tree-sitter-lux/compare/v1.1.1...v2.0.0) (2019-09-29)
 
 
