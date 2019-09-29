@@ -8,6 +8,10 @@
       "assets": ["package.json", "package-lock.json", "CHANGELOG.md"],
       "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}\n[skip ci]"
     }],
-    "@semantic-release/github"
+    ["@semantic-release/github", {
+      "assets": [
+        {"path": "tree-sitter-lux.wasm", "label": "web assembly module"},
+      ]
+    }]
   ]
 }
