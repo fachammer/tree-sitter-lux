@@ -6,4 +6,5 @@ index.js
 .vscode/
 *.out
 *.tgz
+*.wasm
 .test
