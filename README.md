@@ -138,6 +138,6 @@ Children of pair nodes can be of any of the top level types.
 Anything that is not recognized as valid Lux syntax will be encoded by a node of type `ERROR` or `MISSING`.
 
 ## changelog
-All notable changes to this project will be documented in [this changelog](https://github.com/fachammer/tree-sitter-lux/blob/master/README.md).
+All notable changes to this project will be documented in [this changelog](https://github.com/fachammer/tree-sitter-lux/blob/master/CHANGELOG.md).
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
