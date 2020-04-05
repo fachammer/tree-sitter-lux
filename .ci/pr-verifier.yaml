@@ -21,13 +21,13 @@ jobs:
     matrix:
       linux:
         osName: linux
-        imageName: 'ubuntu-16.04'
+        imageName: 'ubuntu-latest'
       mac:
         osName: macos
-        imageName: 'macos-10.13'
+        imageName: 'macOS-latest'
       windows:
         osName: windows
-        imageName: 'vs2017-win2016'
+        imageName: 'windows-latest'
   pool:
     vmImage: $(imageName)
   steps:
