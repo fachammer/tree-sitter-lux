@@ -16,20 +16,20 @@
     "nan": "^2.14.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@commitlint/prompt-cli": "^8.2.0",
-    "@semantic-release/changelog": "^3.0.4",
-    "@semantic-release/git": "^7.0.16",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/prompt-cli": "^8.3.5",
+    "@semantic-release/changelog": "^3.0.6",
+    "@semantic-release/git": "^7.0.18",
     "commitizen": "^4.0.3",
     "cp-cli": "^2.0.0",
     "cross-var": "^1.1.0",
-    "glob": "^7.1.4",
-    "husky": "^3.0.5",
+    "glob": "^7.1.6",
+    "husky": "^3.1.0",
     "npm-watch": "^0.6.0",
-    "rimraf": "^3.0.0",
-    "semantic-release": "^15.13.24",
-    "tree-sitter-cli": "^0.15.8"
+    "rimraf": "^3.0.2",
+    "semantic-release": "^15.14.0",
+    "tree-sitter-cli": "^0.15.14"
   },
   "watch": {
     "test": {
