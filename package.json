@@ -28,7 +28,7 @@
     "husky": "^3.1.0",
     "npm-watch": "^0.6.0",
     "rimraf": "^3.0.2",
-    "semantic-release": "^15.14.0",
+    "semantic-release": "^17.2.3",
     "tree-sitter-cli": "^0.15.14"
   },
   "watch": {
