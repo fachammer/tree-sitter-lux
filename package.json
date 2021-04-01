@@ -10,7 +10,7 @@
   "homepage": "https://github.com/fachammer/tree-sitter-lux",
   "bugs": "https://github.com/fachammer/tree-sitter-lux/issues",
   "license": "MIT",
-  "author": "Fabian Achammer <fabian.achammer@gmail.com> (https://github.com/fachammer)",
+  "author": "Fabian Achammer <fabian@achammer.dev> (https://github.com/fachammer)",
   "repository": "github:fachammer/tree-sitter-lux",
   "dependencies": {
     "nan": "^2.14.0"
