@@ -50,7 +50,7 @@
     }
   },
   "scripts": {
-    "build": "tree-sitter generate",
+    "build": "tree-sitter generate && node-gyp rebuild",
     "prepare": "npm run build",
     "unit-test-only": "tree-sitter test",
     "unit-test": "npm run build && npm run unit-test-only",
