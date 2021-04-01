@@ -1,8 +1,5 @@
 node_modules/
-src/
 build/
-binding.gyp
-index.js
 .vscode/
 *.out
 *.tgz
