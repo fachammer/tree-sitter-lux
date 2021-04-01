@@ -1,5 +1,12 @@
 # changelog
 
+# [2.2.0](https://github.com/fachammer/tree-sitter-lux/compare/v2.1.0...v2.2.0) (2021-04-01)
+
+
+### Features
+
+* add lux file extension ([9c1a6ab](https://github.com/fachammer/tree-sitter-lux/commit/9c1a6abe7ffccb7d18bc582d9bda873c789bedbb))
+
 # [2.1.0](https://github.com/fachammer/tree-sitter-lux/compare/v2.0.0...v2.1.0) (2019-09-29)
 
 
