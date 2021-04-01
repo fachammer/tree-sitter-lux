@@ -49,6 +49,12 @@
       "config": "commitlint.confg.js"
     }
   },
+  "tree-sitter": {
+    "scope": "source.lux",
+    "file-types": [
+      "lux"
+    ]
+  },
   "scripts": {
     "build": "tree-sitter generate && node-gyp rebuild",
     "prepare": "npm run build",
