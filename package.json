@@ -16,20 +16,19 @@
     "nan": "^2.14.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@commitlint/prompt-cli": "^8.3.5",
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
     "@semantic-release/changelog": "^3.0.6",
     "@semantic-release/git": "^7.0.18",
     "commitizen": "^4.0.3",
-    "cp-cli": "^2.0.0",
     "cross-var": "^1.1.0",
     "glob": "^7.1.6",
     "husky": "^3.1.0",
     "npm-watch": "^0.6.0",
     "rimraf": "^3.0.2",
     "semantic-release": "^17.2.3",
-    "tree-sitter-cli": "^0.15.14"
+    "shx": "^0.3.3",
+    "tree-sitter-cli": "^0.19.4"
   },
   "watch": {
     "test": {
@@ -58,11 +57,11 @@
     "example-test-only": "node examples/run-tests.js",
     "test": "npm run build && npm run unit-test-only && npm run example-test-only",
     "test:watch": "npm-watch test",
-    "commit": "commit",
-    "package-test-only": "rimraf .test && cp-cli test/ .test/ && cd .test && cross-var npm install tree-sitter ../tree-sitter-lux-$npm_package_version.tgz && node test.js",
+    "package-test-only": "rimraf .test && shx cp -r test/ .test/ && cd .test && cross-var npm install tree-sitter ../tree-sitter-lux-$npm_package_version.tgz && node test.js",
     "package-test": "npm pack && npm run package-test-only",
     "preversion": "npm test && tree-sitter build-wasm",
-    "postpublish": "rimraf .test && cp-cli test/ .test/ && cd .test && npm install tree-sitter tree-sitter-lux && node test.js",
+    "postpublish": "rimraf .test && shx cp -r test/ .test/ && cd .test && npm install tree-sitter tree-sitter-lux && node test.js",
     "semantic-release": "semantic-release"
-  }
+  },
+  "main": "bindings/node"
 }
