@@ -74,7 +74,7 @@ jobs:
       displayName: install node
     - bash: npm ci
       displayName: install module
-    - bash: npx semantic-release --dry-run --ci false --branch $(System.PullRequest.TargetBranch)
+    - bash: npx semantic-release --dry-run --ci false --branches $(System.PullRequest.TargetBranch)
       displayName: semantic release dry run
       env:
         GH_TOKEN: $(GH_TOKEN)
