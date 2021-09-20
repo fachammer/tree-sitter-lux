@@ -24,7 +24,7 @@
     "cross-var": "^1.1.0",
     "glob": "^7.1.6",
     "husky": "^3.1.0",
-    "npm-watch": "^0.6.0",
+    "npm-watch": "^0.11.0",
     "rimraf": "^3.0.2",
     "semantic-release": "^17.4.2",
     "shx": "^0.3.3",
