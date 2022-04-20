@@ -6,7 +6,7 @@ const asyncGlob = promisify(glob);
 
 const maxBuffer = 10 * 1024 * 1024;
 const globPattern = "examples/lux/stdlib/source/**/*.lux";
-const maxCommandLineLength = 8191;
+const maxCommandLineLength = 8000;
 
 function countText(singular, array) {
   return array.length === 1
