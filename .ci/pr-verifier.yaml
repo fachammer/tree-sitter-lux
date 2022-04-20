@@ -27,7 +27,7 @@ jobs:
           imageName: "macOS-latest"
         windows:
           osName: windows
-          imageName: "vs2017-win2016"
+          imageName: "windows-latest"
     pool:
       vmImage: $(imageName)
     steps:
