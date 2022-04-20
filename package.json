@@ -13,20 +13,19 @@
   "author": "Fabian Achammer <fabian@achammer.dev> (https://github.com/fachammer)",
   "repository": "github:fachammer/tree-sitter-lux",
   "dependencies": {
-    "nan": "^2.14.0"
+    "nan": "^2.15.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "commitizen": "^4.0.3",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "cross-var": "^1.1.0",
     "glob": "^7.1.6",
     "husky": "^3.1.0",
     "npm-watch": "^0.11.0",
     "rimraf": "^3.0.2",
-    "semantic-release": "^17.4.2",
+    "semantic-release": "^19.0.2",
     "shx": "^0.3.3",
     "tree-sitter-cli": "^0.19.4"
   },
