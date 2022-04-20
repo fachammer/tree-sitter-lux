@@ -1,83 +1,83 @@
 variables:
-- group: tokens
+  - group: tokens
 
 trigger: none
 
 jobs:
-- job: commit_verifier
-  displayName: verify commits
-  pool:
-    vmImage: ubuntu-latest
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: 11.x
-    displayName: install node
-  - bash: npm install && npx commitlint --from origin/master --to HEAD
+  - job: commit_verifier
     displayName: verify commits
-- job: build_and_test
-  displayName: build and test
-  strategy:
-    matrix:
-      linux:
-        osName: linux
-        imageName: 'ubuntu-latest'
-      mac:
-        osName: macos
-        imageName: 'macOS-latest'
-      windows:
-        osName: windows
-        imageName: 'vs2017-win2016'
-  pool:
-    vmImage: $(imageName)
-  steps:
-  - checkout: self
-    submodules: true
-  - task: NodeTool@0
-    inputs:
-      versionSpec: 11.x
-    displayName: install node
-  - bash: npm ci
-    displayName: install module
-  - bash: npm run unit-test-only
-    displayName: run parser unit tests
-  - bash: npm run example-test-only
-    displayName: run parser example tests
-  - bash: npm pack
-    displayName: package npm release
-  - bash: npm run package-test-only
-    displayName: test packaging
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: '$(Build.SourcesDirectory)'
-      contents: '*.tgz'
-      targetFolder: $(Build.ArtifactStagingDirectory)/npm
-    displayName: copy npm package
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: '$(Build.SourcesDirectory)'
-      contents: 'package.json'
-      targetFolder: $(Build.ArtifactStagingDirectory)/npm
-    displayName: copy package.json
-  - publish: '$(Build.ArtifactStagingDirectory)/npm'
-    artifact: npm-$(osName)
-- job: dryrun_release
-  displayName: dry run release
-  pool:
-    vmImage: ubuntu-latest
-  steps:
-    - checkout: self
-      submodules: true
-    - task: NodeTool@0
-      inputs:
-        versionSpec: 11.x
-      displayName: install node
-    - bash: npm ci
-      displayName: install module
-    - bash: npx semantic-release --dry-run --ci false --branches $(System.PullRequest.SourceBranch)
-      displayName: semantic release dry run
-      env:
-        GH_TOKEN: $(GH_TOKEN)
-        NPM_TOKEN: $(NPM_TOKEN)
-        SYSTEM_PULLREQUEST_TARGETBRANCH: $(System.PullRequest.TargetBranch)
-        BUILD_SOURCEBRANCHNAME: $(Build.SourceBranchName)
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: 17.x
+        displayName: install node
+      - bash: npm install && npx commitlint --from origin/master --to HEAD
+        displayName: verify commits
+  - job: build_and_test
+    displayName: build and test
+    strategy:
+      matrix:
+        linux:
+          osName: linux
+          imageName: "ubuntu-latest"
+        mac:
+          osName: macos
+          imageName: "macOS-latest"
+        windows:
+          osName: windows
+          imageName: "vs2017-win2016"
+    pool:
+      vmImage: $(imageName)
+    steps:
+      - checkout: self
+        submodules: true
+      - task: NodeTool@0
+        inputs:
+          versionSpec: 17.x
+        displayName: install node
+      - bash: npm ci
+        displayName: install module
+      - bash: npm run unit-test-only
+        displayName: run parser unit tests
+      - bash: npm run example-test-only
+        displayName: run parser example tests
+      - bash: npm pack
+        displayName: package npm release
+      - bash: npm run package-test-only
+        displayName: test packaging
+      - task: CopyFiles@2
+        inputs:
+          sourceFolder: "$(Build.SourcesDirectory)"
+          contents: "*.tgz"
+          targetFolder: $(Build.ArtifactStagingDirectory)/npm
+        displayName: copy npm package
+      - task: CopyFiles@2
+        inputs:
+          sourceFolder: "$(Build.SourcesDirectory)"
+          contents: "package.json"
+          targetFolder: $(Build.ArtifactStagingDirectory)/npm
+        displayName: copy package.json
+      - publish: "$(Build.ArtifactStagingDirectory)/npm"
+        artifact: npm-$(osName)
+  - job: dryrun_release
+    displayName: dry run release
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - checkout: self
+        submodules: true
+      - task: NodeTool@0
+        inputs:
+          versionSpec: 17.x
+        displayName: install node
+      - bash: npm ci
+        displayName: install module
+      - bash: npx semantic-release --dry-run --ci false --branches $(System.PullRequest.SourceBranch)
+        displayName: semantic release dry run
+        env:
+          GH_TOKEN: $(GH_TOKEN)
+          NPM_TOKEN: $(NPM_TOKEN)
+          SYSTEM_PULLREQUEST_TARGETBRANCH: $(System.PullRequest.TargetBranch)
+          BUILD_SOURCEBRANCHNAME: $(Build.SourceBranchName)
