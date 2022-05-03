@@ -1,5 +1,7 @@
 # tree-sitter-lux
 
+***Repository is archived due to me not being able to continue the development. If you want to take over send me a message!***
+
 [![Build Status](https://dev.azure.com/fabianachammer/tree-sitter-lux/_apis/build/status/release?branchName=master&label=build)](https://dev.azure.com/fabianachammer/tree-sitter-lux/_build/latest?definitionId=7&branchName=master)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![NPM Version](https://img.shields.io/npm/v/tree-sitter-lux)](https://www.npmjs.com/package/tree-sitter-lux)
